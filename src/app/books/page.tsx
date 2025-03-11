@@ -19,7 +19,8 @@ export default function Books() {
     const [books, setBooks] = useState<{
         name: string;
         author: string;
-        comments: string;
+        r_comments: string;
+        p_comments: string;
         image: string;
         id: string;
     }[]
@@ -66,7 +67,8 @@ export default function Books() {
                 (book) =>
                     book.name.toLowerCase().includes(search) ||
                     book.author.toLowerCase().includes(search) ||
-                    book.comments.toLowerCase().includes(search)
+                    book.r_comments.toLowerCase().includes(search) || 
+                    book.p_comments.toLowerCase().includes(search)
             )
         );
         setCurrentPage(1);
@@ -90,7 +92,7 @@ export default function Books() {
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
-        <div className="flex flex-col w-full h-full items-center">
+        <div className="flex flex-col w-full h-full items-center bg-purple-200">
             <Header />
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] mt-10 overflow-hidden">
@@ -145,11 +147,9 @@ export default function Books() {
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <BookForm />
-                <p className="xs:text-xs sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
-                    *Disclaimer: This is just my opinion and what I enjoyed reading
-                    the most regardless of critical bias. Moreover, I chose not to
-                    rank the books I read just because each book feels too unique to
-                    compare to one another.
+                <p className="xs:text-xs text-black sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
+                    *Disclaimer: This is just our opinion and what we enjoyed reading
+                    the most regardless of critical bias.
                 </p>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
@@ -174,7 +174,7 @@ export default function Books() {
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
                     />
                 </div>
-                <hr className="border-t border-gray-300" />
+                <hr className="border-t border-gray-800" />
                 {currentMedia.map((book, index) => (
                     <FadeInSection
                         key={book.id || `${book.name}-${book.author}-${index}`}
@@ -194,7 +194,7 @@ export default function Books() {
                             />
                             <div className="xs:ml-2 sm:ml-4 w-full">
                                 <div className="flex flex-row w-full justify-between">
-                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">
+                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-black">
                                         {book.name}
                                     </p>
                                     <div className="flex flex-row items-center gap-2">
@@ -202,16 +202,15 @@ export default function Books() {
                                         <UpdateBookModal book={book} />
                                     </div>
                                 </div>
-                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">
+                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">
                                     {book.author}
                                 </p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">
-                                    {book.comments}
-                                </p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{book.r_comments}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{book.p_comments}</p>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && (
-                            <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />
+                            <hr className="border-t border-gray-800 xs:my-1 sm:my-2 xl:my-4" />
                         )}
                     </FadeInSection>
                 ))}

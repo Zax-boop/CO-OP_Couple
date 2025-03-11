@@ -1,7 +1,7 @@
 import supabase from "./supabaseclient";
 
 export default async function updateBook(id, updatedFields) {
-    const { name, author, comments, imageFile } = updatedFields;
+    const { name, author, r_comments, p_comments, imageFile } = updatedFields;
     let imageUrl;
     if (imageFile) {
         const fileName = `${Date.now()}_${imageFile.name}`;
@@ -19,7 +19,8 @@ export default async function updateBook(id, updatedFields) {
     const fieldsToUpdate = {
         ...(name !== undefined && { name }),
         ...(author !== undefined && { author }),
-        ...(comments !== undefined && { comments }),
+        ...(r_comments !== undefined && { r_comments }),
+        ...(p_comments !== undefined && { p_comments }),
         ...(imageUrl && { image: imageUrl }),
     };
 

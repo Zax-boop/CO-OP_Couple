@@ -55,14 +55,6 @@ export default function HomeHeader() {
                             </li>
                             <li>
                                 <Link
-                                    href="/ghibli"
-                                    className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
-                                >
-                                    Ghibli
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
                                     href="/books"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >
@@ -71,18 +63,34 @@ export default function HomeHeader() {
                             </li>
                             <li>
                                 <Link
-                                    href="/climbing"
-                                    className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
-                                >
-                                    Sports
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
                                     href="/belevision"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >
                                     Da Belevision
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/ghibli"
+                                    className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
+                                >
+                                    Ghibli
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/mushroom"
+                                    className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
+                                >
+                                    Mushroom
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/climbing"
+                                    className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
+                                >
+                                    Sports
                                 </Link>
                             </li>
                             <li>

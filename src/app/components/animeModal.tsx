@@ -118,7 +118,7 @@ export default function GhibliForm() {
                                     </div>
                                     {user?.email == 'rohan.arya01@gmail.com' && <div className="relative group">
                                         <textarea
-                                            className="w-full bg-transparent text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            className="w-full bg-transparent text-2xl outline-none text-green-800 border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Rohan's comments"
                                             value={rComments}
                                             onFocus={() => setCommentFocus(true)}

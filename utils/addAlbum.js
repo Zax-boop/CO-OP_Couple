@@ -1,17 +1,7 @@
 import supabase from "./supabaseclient";
 
-export default async function addAlbum(name, artist, comment, imageFile, Rank) {
+export default async function addAlbum(name, artist, r_comments, p_comments, imageFile) {
   let imageUrl = "";
-  if (Rank == "") {
-    const { data: list, error: fetchError } = await supabase
-      .from('album_rankings')
-      .select('*');
-    if (fetchError) {
-      console.error('Error fetching tv to update:', fetchError);
-      return null;
-    }
-    Rank = list.length + 1;
-  }
   if (imageFile) {
     const fileName = `${Date.now()}_${imageFile.name}`;
 
@@ -26,31 +16,9 @@ export default async function addAlbum(name, artist, comment, imageFile, Rank) {
     
     imageUrl = supabase.storage.from('album-images').getPublicUrl(fileName).data.publicUrl;
   }
-
-  const { data: albumsToUpdate, error: fetchError } = await supabase
-    .from('album_rankings')
-    .select('*')
-    .gte('Rank', Rank); 
-
-  if (fetchError) {
-    console.error('Error fetching albums to update:', fetchError);
-    return null;
-  }
-  albumsToUpdate.sort((a, b) => b.Rank - a.Rank)
-  for (const album of albumsToUpdate) {
-    const { error: updateError } = await supabase
-      .from('album_rankings')
-      .update({ Rank: album.Rank + 1 }) 
-      .eq('id', album.id);
-
-    if (updateError) {
-      console.error(`Error updating rank for album ID ${album.id}:`, updateError);
-      return null;
-    }
-  }
   const { data, error } = await supabase
     .from('album_rankings')
-    .insert([{ name, artist, comment, image: imageUrl, Rank }]);
+    .insert([{ name, artist, r_comments, p_comments, image: imageUrl }]);
 
   if (error) {
     console.error('Error inserting data:', error);

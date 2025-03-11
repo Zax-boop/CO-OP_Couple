@@ -72,7 +72,7 @@ export default function TVRanking() {
                 (show) =>
                     show.name.toLowerCase().includes(search) ||
                     show.director.toLowerCase().includes(search) ||
-                    show.r_comments.toLowerCase().includes(search) || 
+                    show.r_comments.toLowerCase().includes(search) ||
                     show.p_comments.toLowerCase().includes(search)
             )
         );
@@ -97,7 +97,8 @@ export default function TVRanking() {
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
-        <div className='flex flex-col w-full h-full items-center'>
+        // <div className={`flex flex-col w-full h-full items-center bg-black bg-[url("/bg_ex.jpg")] bg-cover bg-center`}>
+        <div className={`flex flex-col w-full h-full items-center bg-green-100`}>
             <Header />
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10  overflow-hidden">
@@ -195,7 +196,7 @@ export default function TVRanking() {
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <TVForm />
-                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just our opinion and what we enjoyed watching the most regardless of critical bias. </p>
+                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0 text-black'>*Disclaimer: This is just our opinion and what we enjoyed watching the most regardless of critical bias. </p>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
@@ -219,12 +220,12 @@ export default function TVRanking() {
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
                     />
                 </div>
-                <hr className="border-t border-gray-300" />
+                <hr className="border-t border-gray-800" />
                 {currentMedia.map((show: {
                     name: string;
                     director: string;
                     r_comments: string;
-                    p_comments: string;                    
+                    p_comments: string;
                     image: string;
                     rank: number;
                     id: string;
@@ -234,7 +235,7 @@ export default function TVRanking() {
                         ref={showRefs.current[index]}
                         className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
                         <div className="flex flex-row">
-                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{show.rank}.</h2>
+                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4 text-black">{show.rank}.</h2>
                             <img
                                 src={show.image}
                                 alt={`${show.name} album cover`}
@@ -246,19 +247,19 @@ export default function TVRanking() {
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>
-                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{show.name}</p>
+                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-black">{show.name}</p>
                                     <div className='flex flex-row items-center gap-2'>
                                         <DeleteTV id={show.id} rank={show.rank} />
                                         <UpdateTVModal tv={show} />
                                     </div>
                                 </div>
-                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{show.director}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-500">{show.r_comments}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500">{show.p_comments}</p>
+                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">{show.director}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{show.r_comments}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{show.p_comments}</p>
 
                             </div>
                         </div>
-                        {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
+                        {index < currentMedia.length - 1 && <hr className="border-t border-gray-800 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
                 ))}
                 <div className="flex flex-row flex-wrap justify-start mt-1">

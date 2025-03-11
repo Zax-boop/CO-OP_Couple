@@ -6,7 +6,7 @@ import deleteAlbum from "../../../utils/deleteAlbum";
 import supabase from "../../../utils/supabaseclient"
 import { User } from '@supabase/supabase-js';
 
-export default function DeleteAlbum({ id, Rank }: { id: string; Rank: number }) {
+export default function DeleteAlbum({ id }: { id: string; }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false); 
     const [user, setUser] = useState<User | null>(null);
@@ -23,7 +23,7 @@ export default function DeleteAlbum({ id, Rank }: { id: string; Rank: number }) 
         e.preventDefault();
         setLoading(true);
         try {
-            await deleteAlbum(id, Rank);
+            await deleteAlbum(id);
             setModalOpen(false); 
         } catch (error) {
             console.log("Error deleting album:", error);

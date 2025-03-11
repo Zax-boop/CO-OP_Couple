@@ -86,7 +86,7 @@ export default function GamesRanking() {
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
-        <div className='flex flex-col w-full h-full items-center'>
+        <div className='flex flex-col w-full h-full items-center bg-yellow-100'>
             <Header />
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
@@ -184,7 +184,7 @@ export default function GamesRanking() {
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <GameForm />
-                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
+                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0 text-black'>*Disclaimer: This is just our opinion and what we enjoyed playing the most regardless of critical bias. </p>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
@@ -208,7 +208,7 @@ export default function GamesRanking() {
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
                     />
                 </div>
-                <hr className="border-t border-gray-300" />
+                <hr className="border-t border-gray-800" />
                 {currentMedia.map((game: {
                     name: string;
                     studio: string;
@@ -233,17 +233,17 @@ export default function GamesRanking() {
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>
-                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{game.name}</p>
+                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-black">{game.name}</p>
                                     <div className='flex flex-row items-center gap-2'>
                                         <DeleteGames id={game.id} />
                                         <UpdateGamesModal game={game} />
                                     </div>
                                 </div>
-                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{game.studio}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-500">{game.r_comments}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500">{game.p_comments}</p>                             </div>
+                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">{game.studio}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{game.r_comments}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{game.p_comments}</p>                             </div>
                         </div>
-                        {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
+                        {index < currentMedia.length - 1 && <hr className="border-t border-gray-800 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
                 ))}
                 <div className="flex flex-row flex-wrap justify-start mt-1">

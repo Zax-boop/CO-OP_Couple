@@ -130,7 +130,7 @@ export default function UpdateTVModal({ tv }: {
                                     onChange={(e) => setDirector(e.target.value)}
                                 />
                                 {user?.email == 'rohan.arya01@gmail.com' && <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-800 border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Rohan Comments"
                                     value={rComments}
                                     onChange={(e) => setRComments(e.target.value)}

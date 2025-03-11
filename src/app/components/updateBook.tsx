@@ -13,7 +13,8 @@ export default function UpdateBookModal({ book }: {
     book: {
         name: string;
         author: string;
-        comments: string;
+        r_comments: string;
+        p_comments: string;
         image: string;
         id: string;
     }
@@ -21,7 +22,8 @@ export default function UpdateBookModal({ book }: {
     const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(book?.name || '');
     const [author, setAuthor] = useState(book?.author || '');
-    const [comments, setComments] = useState(book?.comments || '');
+    const [rComments, setRComments] = useState(book?.r_comments || '');
+    const [pComments, setPComments] = useState(book?.p_comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(book?.image || show_placeholder);
     const [loading, setLoading] = useState(false);
@@ -40,7 +42,8 @@ export default function UpdateBookModal({ book }: {
         if (book) {
             setName(book.name || '');
             setAuthor(book.author || '');
-            setComments(book.comments || '');
+            setRComments(book.r_comments || '');
+            setPComments(book.p_comments || '');
             setCoverImage(book.image || show_placeholder);
         }
     }, [book]);
@@ -61,7 +64,8 @@ export default function UpdateBookModal({ book }: {
             const updatedFields = {
                 name,
                 author,
-                comments: comments,
+                r_comments: rComments,
+                p_comments: pComments,
                 imageFile,
             };
             await updateBook(book.id, updatedFields);
@@ -121,13 +125,20 @@ export default function UpdateBookModal({ book }: {
                                     value={author}
                                     onChange={(e) => setAuthor(e.target.value)}
                                 />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
+                                  {user?.email == 'rohan.arya01@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-800 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Rohan Comments"
+                                    value={rComments}
+                                    onChange={(e) => setRComments(e.target.value)}
                                     rows={3}
-                                />
+                                />}
+                                {user?.email == 'prarthanarawal926@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Prath Comments"
+                                    value={pComments}
+                                    onChange={(e) => setPComments(e.target.value)}
+                                    rows={3}
+                                />}
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

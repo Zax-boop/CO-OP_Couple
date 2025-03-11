@@ -12,7 +12,8 @@ export default function BookForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
-    const [comments, setComments] = useState('');
+    const [rComments, setRComments] = useState('');
+    const [pComments, setPComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
@@ -40,7 +41,7 @@ export default function BookForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addBook(name, author, comments, imageFile);
+        await addBook(name, author, rComments, pComments, imageFile);
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload();
@@ -68,7 +69,7 @@ export default function BookForm() {
                         <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                             <div className='flex flex-row w-full'>
                                 <div className='w-1/2 self-start flex flex-col items-center gap-3'>
-                                    <Image src={coverImage} width={255.2} height={400} alt='placeholder' className='transform transition-transform hover:scale-105 duration-300 object-cover w-[15.95rem] h-[25rem]'/>
+                                    <Image src={coverImage} width={255.2} height={400} alt='placeholder' className='transform transition-transform hover:scale-105 duration-300 object-cover w-[15.95rem] h-[25rem]' />
                                     <label className="flex flex-row justify-center items-center gap-2 pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                         {coverImage === show_placeholder ? "Choose Cover" : "Change Cover"}
                                         <PlusIcon className="w-5 h-5 mr-2" />
@@ -110,21 +111,36 @@ export default function BookForm() {
                                                 }`}
                                         />
                                     </div>
-                                    <div className="relative group">
+                                    {user?.email == 'rohan.arya01@gmail.com' && <div className="relative group">
                                         <textarea
-                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Comments"
-                                            value={comments}
+                                            className="w-full bg-transparent text-2xl outline-none text-green-800 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Rohan's comments"
+                                            value={rComments}
                                             onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
-                                            onChange={(e) => setComments(e.target.value)}
-                                            rows={3} 
+                                            onChange={(e) => setRComments(e.target.value)}
+                                            rows={3}
                                         />
                                         <span
-                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || rComments ? "w-full" : "w-0"
                                                 }`}
                                         />
-                                    </div>
+                                    </div>}
+                                    {user?.email == 'prarthanarawal926@gmail.com' && <div className="relative group">
+                                        <textarea
+                                            className="w-full bg-transparent text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Prath's comments"
+                                            value={pComments}
+                                            onFocus={() => setCommentFocus(true)}
+                                            onBlur={() => setCommentFocus(false)}
+                                            onChange={(e) => setPComments(e.target.value)}
+                                            rows={3}
+                                        />
+                                        <span
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || pComments ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>}
                                 </div>
                             </div>
                             <div className='flex flex-col w-full items-center'>

@@ -13,18 +13,18 @@ export default function UpdateAlbumModal({ album }: {
     album: {
         name: string;
         artist: string;
-        comment: string;
+        r_comments: string;
+        p_comments: string;
         image: string;
-        Rank: number;
         id: string;
     }
 }) {
     const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(album?.name || '');
     const [artist, setArtist] = useState(album?.artist || '');
-    const [comments, setComments] = useState(album?.comment || '');
+    const [rComments, setRComments] = useState(album?.r_comments || '');
+    const [pComments, setPComments] = useState(album?.p_comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
-    const [rank, setRank] = useState(album?.Rank || '');
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(album?.image || album_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
@@ -42,8 +42,8 @@ export default function UpdateAlbumModal({ album }: {
         if (album) {
             setName(album.name || '');
             setArtist(album.artist || '');
-            setComments(album.comment || '');
-            setRank(album.Rank || '');
+            setRComments(album.r_comments || '');
+            setPComments(album.p_comments || '');
             setCoverImage(album.image || album_placeholder);
         }
     }, [album]);
@@ -64,9 +64,9 @@ export default function UpdateAlbumModal({ album }: {
             const updatedFields = {
                 name,
                 artist,
-                comment: comments,
+                r_comments: rComments,
+                p_comments: pComments,
                 imageFile,
-                Rank: Number(rank),
             };
             await updateAlbum(album.id, updatedFields);
         } catch (error) {
@@ -125,20 +125,20 @@ export default function UpdateAlbumModal({ album }: {
                                     value={artist}
                                     onChange={(e) => setArtist(e.target.value)}
                                 />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
+                                {user?.email == 'rohan.arya01@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-800 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Rohan Comments"
+                                    value={rComments}
+                                    onChange={(e) => setRComments(e.target.value)}
                                     rows={3}
-                                />
-                                <input
-                                    type="number"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Rank"
-                                    value={rank}
-                                    onChange={(e) => setRank(e.target.value)}
-                                />
+                                />}
+                                {user?.email == 'prarthanarawal926@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Prath Comments"
+                                    value={pComments}
+                                    onChange={(e) => setPComments(e.target.value)}
+                                    rows={3}
+                                />}
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>
