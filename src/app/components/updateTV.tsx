@@ -13,8 +13,9 @@ export default function UpdateTVModal({ tv }: {
     tv: {
         name: string;
         director: string;
-        comments: string;
-        image: string;
+        r_comments: string;
+        p_comments: string;       
+         image: string;
         rank: number;
         id: string;
     }
@@ -22,7 +23,8 @@ export default function UpdateTVModal({ tv }: {
     const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(tv?.name || '');
     const [director, setDirector] = useState(tv?.director || '');
-    const [comments, setComments] = useState(tv?.comments || '');
+    const [rComments, setRComments] = useState(tv?.r_comments || '');
+    const [pComments, setPComments] = useState(tv?.r_comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(tv?.rank || '');
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(tv?.image || show_placeholder);
@@ -42,7 +44,8 @@ export default function UpdateTVModal({ tv }: {
         if (tv) {
             setName(tv.name || '');
             setDirector(tv.director || '');
-            setComments(tv.comments || '');
+            setRComments(tv.r_comments || '');
+            setPComments(tv.p_comments || '');
             setRank(tv.rank || '');
             setCoverImage(tv.image || show_placeholder);
         }
@@ -64,7 +67,8 @@ export default function UpdateTVModal({ tv }: {
             const updatedFields = {
                 name,
                 director,
-                comments: comments,
+                r_comments: rComments,
+                p_comments: pComments,
                 imageFile,
                 rank: Number(rank),
             };
@@ -125,13 +129,20 @@ export default function UpdateTVModal({ tv }: {
                                     value={director}
                                     onChange={(e) => setDirector(e.target.value)}
                                 />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
+                                {user?.email == 'rohan.arya01@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Rohan Comments"
+                                    value={rComments}
+                                    onChange={(e) => setRComments(e.target.value)}
                                     rows={3}
-                                />
+                                />}
+                                {user?.email == 'prarthanarawal926@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Prath Comments"
+                                    value={pComments}
+                                    onChange={(e) => setPComments(e.target.value)}
+                                    rows={3}
+                                />}
                                 <input
                                     type="number"
                                     className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"

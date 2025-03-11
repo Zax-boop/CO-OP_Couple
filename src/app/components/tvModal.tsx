@@ -12,7 +12,8 @@ export default function TVForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [name, setName] = useState('');
     const [director, setDirector] = useState('');
-    const [comments, setComments] = useState('');
+    const [rComments, setRComments] = useState('');
+    const [pComments, setPComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState("")
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
@@ -39,7 +40,7 @@ export default function TVForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addTV(name, director, comments, imageFile, Number(rank));
+        await addTV(name, director, rComments, pComments, imageFile, Number(rank));
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload()
@@ -48,7 +49,7 @@ export default function TVForm() {
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div className={`flex flex-row w-full justify-end`}>
                 <label onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
-                    Add TV Show
+                    Add Belevision
                     <PlusIcon className="w-5 h-5 mr-2" />
                 </label>
             </div>
@@ -61,7 +62,7 @@ export default function TVForm() {
                         >
                             ✕
                         </button>
-                        <h2 className="text-2xl font-bold mb-4">Add a New TV Show</h2>
+                        <h2 className="text-2xl font-bold mb-4">Add a New Belevision</h2>
                         <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                             <div className='flex flex-row w-full'>
                                 <div className='w-1/2 self-start flex flex-col items-center gap-3'>
@@ -81,7 +82,7 @@ export default function TVForm() {
                                         <input
                                             type="text"
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="TV Show Name"
+                                            placeholder="Belevision Name"
                                             value={name}
                                             onFocus={() => setNameFocus(true)}
                                             onBlur={() => setNameFocus(false)}
@@ -107,21 +108,36 @@ export default function TVForm() {
                                                 }`}
                                         />
                                     </div>
-                                    <div className="relative group">
+                                    {user?.email == 'rohan.arya01@gmail.com' && <div className="relative group">
                                         <textarea
-                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Comments"
-                                            value={comments}
+                                            className="w-full bg-transparent text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Rohan's comments"
+                                            value={rComments}
                                             onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
-                                            onChange={(e) => setComments(e.target.value)}
+                                            onChange={(e) => setRComments(e.target.value)}
                                             rows={3} 
                                         />
                                         <span
-                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || rComments ? "w-full" : "w-0"
                                                 }`}
                                         />
-                                    </div>
+                                    </div>}
+                                    {user?.email == 'prarthanarawal926@gmail.com' && <div className="relative group">
+                                        <textarea
+                                            className="w-full bg-transparent text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Prath's comments"
+                                            value={pComments}
+                                            onFocus={() => setCommentFocus(true)}
+                                            onBlur={() => setCommentFocus(false)}
+                                            onChange={(e) => setPComments(e.target.value)}
+                                            rows={3} 
+                                        />
+                                        <span
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || pComments ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>}
                                     <div className="relative group">
                                         <input
                                             type="number"

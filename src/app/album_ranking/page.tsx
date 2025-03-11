@@ -172,7 +172,7 @@ export default function Albums() {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search books..."
+                        placeholder="Search albums..."
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
                     />
                 </div>

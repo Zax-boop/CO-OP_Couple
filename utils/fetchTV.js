@@ -2,8 +2,8 @@ import supabase from "./supabaseclient";
 
 export default async function fetchTV() {
   const { data, error } = await supabase
-    .from('tv_rankings')
-    .select('name, director, comments, image, rank, id') 
+    .from('belevision')
+    .select('name, director, r_comments, p_comments, image, rank, id') 
     .order('rank', { ascending: true }); 
 
   if (error) {

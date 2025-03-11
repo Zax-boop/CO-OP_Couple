@@ -70,9 +70,9 @@ export default function AboutSection() {
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>
-          <Link href='/anime' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
+          <Link href='/ghibli' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
             <Image src={cb} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
-            <p className='xs:text-sm sm:text-3xl cursor-pointer'>Anime</p>
+            <p className='xs:text-sm sm:text-3xl cursor-pointer'>Ghibli</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>

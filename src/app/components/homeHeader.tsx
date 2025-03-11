@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import linkedin_logo from "../../../public/linkedinLogo.png";
-import github_logo from "../../../public/github_logo.png";
-import Image from "next/image";
 import Link from "next/link";
 import { ListOrdered, ScrollText } from "lucide-react";
 export default function HomeHeader() {
@@ -58,10 +55,10 @@ export default function HomeHeader() {
                             </li>
                             <li>
                                 <Link
-                                    href="/anime"
+                                    href="/ghibli"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >
-                                    Anime
+                                    Ghibli
                                 </Link>
                             </li>
                             <li>
@@ -82,10 +79,10 @@ export default function HomeHeader() {
                             </li>
                             <li>
                                 <Link
-                                    href="/tv"
+                                    href="/belevision"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >
-                                    TV Shows
+                                    Da Belevision
                                 </Link>
                             </li>
                             <li>
@@ -98,31 +95,6 @@ export default function HomeHeader() {
                             </li>
                         </ul>
                     </div>
-                    <a
-                        href="/Resume_Rohan_Arya.pdf"
-                        target="_blank"
-                        className="transform transition-transform duration-200 hover:scale-105"
-                    >
-                        <ScrollText className="xs:w-[1.5rem] sm:w-[1.5rem]" />
-                    </a>
-                    <a
-                        target="_blank"
-                        href="https://www.linkedin.com/in/rohan-arya/"
-                        className="transform transition-transform duration-200 hover:scale-105"
-                    >
-                        <Image src={linkedin_logo} className="xs:w-[1.5rem] sm:w-[1.5rem] sm:mx-0.5" alt="linkedin" />
-                    </a>
-                    <a
-                        target="_blank"
-                        href="https://github.com/Zax-boop"
-                        className="transform transition-transform duration-200 hover:scale-105"
-                    >
-                        <Image
-                            src={github_logo}
-                            className="xs:w-[1.5rem] sm:w-[1.5rem] bg-white rounded-sm"
-                            alt="github"
-                        />
-                    </a>
                 </div>
             </div>
 

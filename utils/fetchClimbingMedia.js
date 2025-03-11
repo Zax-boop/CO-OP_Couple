@@ -1,10 +1,10 @@
 import supabase from "./supabaseclient";
 
-const fetchClimbingMedia = async () => {
+const fetchSportsMedia = async () => {
     try {
         const { data, error } = await supabase
             .storage
-            .from('climbing')  // Specify the bucket name
+            .from('sports')  // Specify the bucket name
             .list('', { recursive: true });  // List all files
 
         if (error) {
@@ -17,14 +17,14 @@ const fetchClimbingMedia = async () => {
         });
 
         const filesWithUrls = filteredFiles?.map(file => {
-            const filePath = supabase.storage.from('climbing').getPublicUrl(file.name);
+            const filePath = supabase.storage.from('sports').getPublicUrl(file.name);
             return { name: file.name, url: filePath };
         });
         return filesWithUrls;
     } catch (error) {
-        console.error("Error fetching climbing media:", error);
+        console.error("Error fetching sports media:", error);
         return [];
     }
 };
 
-export default fetchClimbingMedia;
+export default fetchSportsMedia;

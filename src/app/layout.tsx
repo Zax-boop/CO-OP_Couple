@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Rohan Arya&apos;s Portfolio</title>
+        <title>The CO-OP Couple</title>
       <body
         className={`${montserrat.className} antialiased`}
       >

@@ -3,7 +3,7 @@ import supabase from "./supabaseclient";
 export default async function deleteTV(tvId, rank) {
   try {
     const { data: deletedTV, error: deleteError } = await supabase
-      .from('tv_rankings')
+      .from('belevision')
       .delete()
       .eq('id', tvId);
 
@@ -12,7 +12,7 @@ export default async function deleteTV(tvId, rank) {
       return null;
     }
     const { data: tvToUpdate, error: fetchError } = await supabase
-      .from('tv_rankings')
+      .from('belevision')
       .select('*')
       .gt('rank', rank);
 
@@ -23,7 +23,7 @@ export default async function deleteTV(tvId, rank) {
     tvToUpdate.sort((a, b) => a.rank - b.rank);
     for (const tv of tvToUpdate) {
       const { error: updateError } = await supabase
-        .from('tv_rankings')
+        .from('belevision')
         .update({ rank: tv.rank - 1 })
         .eq('id', tv.id);
 

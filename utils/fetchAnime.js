@@ -1,13 +1,13 @@
 import supabase from "./supabaseclient";  
 
-export default async function fetchAnime() {
+export default async function fetchGhibli() {
   const { data, error } = await supabase
-    .from('anime_rankings')
-    .select('name, studio, comments, image, rank, id') 
+    .from('ghibli')
+    .select('name, director, r_comments, p_comments, image, rank, id') 
     .order('rank', { ascending: true }); 
 
   if (error) {
-    console.error('Error fetching anime:', error);
+    console.error('Error fetching ghibli:', error);
     return null;
   }
 

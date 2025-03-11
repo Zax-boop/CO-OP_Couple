@@ -14,17 +14,17 @@ export default function UpdateGamesModal({ game }: {
         name: string;
         studio: string;
         image: string;
-        comments: string;
-        rank: number;
+        r_comments: string;
+        p_comments: string;
         id: string;
     }
 }) {
     const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(game?.name || '');
     const [studio, setStudio] = useState(game?.studio || '');
-    const [comments, setComments] = useState(game?.comments || '');
+    const [rComments, setRComments] = useState(game?.r_comments || '');
+    const [pComments, setPComments] = useState(game?.p_comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
-    const [rank, setRank] = useState(game?.rank || '');
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(game?.image || game_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
@@ -42,8 +42,8 @@ export default function UpdateGamesModal({ game }: {
         if (game) {
             setName(game.name || '');
             setStudio(game.studio || '');
-            setComments(game.comments || '');
-            setRank(game.rank || '');
+            setRComments(game.r_comments || '');
+            setPComments(game.p_comments || '');
             setCoverImage(game.image || game_placeholder);
         }
     }, [game]);
@@ -64,9 +64,9 @@ export default function UpdateGamesModal({ game }: {
             const updatedFields = {
                 name,
                 studio,
-                comments: comments,
+                r_comments: rComments,
+                p_comments: pComments,
                 imageFile,
-                rank: Number(rank),
             };
             await updateGames(game.id, updatedFields);
         } catch (error) {
@@ -125,20 +125,20 @@ export default function UpdateGamesModal({ game }: {
                                     value={studio}
                                     onChange={(e) => setStudio(e.target.value)}
                                 />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
+                                {user?.email == 'rohan.arya01@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Rohan Comments"
+                                    value={rComments}
+                                    onChange={(e) => setRComments(e.target.value)}
                                     rows={3}
-                                />
-                                <input
-                                    type="number"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Rank"
-                                    value={rank}
-                                    onChange={(e) => setRank(e.target.value)}
-                                />
+                                />}
+                                {user?.email == 'prarthanarawal926@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Prath Comments"
+                                    value={pComments}
+                                    onChange={(e) => setPComments(e.target.value)}
+                                    rows={3}
+                                />}
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

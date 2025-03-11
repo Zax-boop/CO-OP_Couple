@@ -1,13 +1,13 @@
 import supabase from "./supabaseclient";
 
-export default async function addClimbingMedia(mediaFile) {
+export default async function addSportsMedia(mediaFile) {
   let mediaURL = "";
 
   if (mediaFile) {
     const fileName = `${Date.now()}_${mediaFile.name}`;
 
     const { data: storageData, error: storageError } = await supabase.storage
-      .from('climbing') 
+      .from('sports') 
       .upload(fileName, mediaFile);
 
     if (storageError) {
@@ -15,7 +15,7 @@ export default async function addClimbingMedia(mediaFile) {
       return null;
     }
     
-    mediaURL = supabase.storage.from('climbing').getPublicUrl(fileName).data.publicUrl;
+    mediaURL = supabase.storage.from('sports').getPublicUrl(fileName).data.publicUrl;
   }
   return mediaURL;
 }

@@ -85,8 +85,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative flex flex-col w-4/5 items-start z-10">
           <PoppingLetters
-            className="font-semibold xs:text-[2.5rem] sm:text-[5rem] lg:text-[7rem] xl:text-[10rem] xs:mt-2 sm:mt-0 xl:mt-12"
-            text={"ROHAN ARYA"}
+            className="font-semibold xs:text-[2.5rem] sm:text-[5rem] lg:text-[7rem] xl:text-[9rem] xs:mt-2 sm:mt-0 xl:mt-12"
+            text={"The CO-OP Couple"}
           />
           <div className="flex xs:flex-col xl:flex-row justify-between w-full xs:mt-4 xl:mt-20">
             <div className="flex flex-col w-4/5">
@@ -139,18 +139,18 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-2 xl:mt-[1rem] z-10">
-        <LazyLoader id="experience">
+        {/* <LazyLoader id="experience">
           <ExperienceTimeline />
         </LazyLoader>
         <LazyLoader id="projects">
           <ProjectSection />
-        </LazyLoader>
+        </LazyLoader> */}
         <LazyLoader id="about">
           <AboutSection />
         </LazyLoader>
-        <LazyLoader id="contact">
+        {/* <LazyLoader id="contact">
           <ContactSection />
-        </LazyLoader>
+        </LazyLoader> */}
       </div>
     </div>
   );

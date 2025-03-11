@@ -1,10 +1,10 @@
 import supabase from "./supabaseclient";
 
-export default async function addTV(name, director, comments, imageFile, rank) {
+export default async function addTV(name, director, r_comments, p_comments, imageFile, rank) {
   let imageUrl = "";
   if (rank == "") {
     const { data: list, error: fetchError } = await supabase
-      .from('tv_rankings')
+      .from('belevision')
       .select('*');
     if (fetchError) {
       console.error('Error fetching tv to update:', fetchError);
@@ -17,7 +17,7 @@ export default async function addTV(name, director, comments, imageFile, rank) {
     const fileName = `${Date.now()}_${imageFile.name}`;
 
     const { data: storageData, error: storageError } = await supabase.storage
-      .from('tv_images')
+      .from('belevision_images')
       .upload(fileName, imageFile);
 
     if (storageError) {
@@ -25,10 +25,10 @@ export default async function addTV(name, director, comments, imageFile, rank) {
       return null;
     }
 
-    imageUrl = supabase.storage.from('tv_images').getPublicUrl(fileName).data.publicUrl;
+    imageUrl = supabase.storage.from('belevision_images').getPublicUrl(fileName).data.publicUrl;
   }
   const { data: tvToUpdate, error: fetchError } = await supabase
-    .from('tv_rankings')
+    .from('belevision')
     .select('*')
     .gte('rank', rank);
 
@@ -39,7 +39,7 @@ export default async function addTV(name, director, comments, imageFile, rank) {
   tvToUpdate.sort((a, b) => b.rank - a.rank)
   for (const tv of tvToUpdate) {
     const { error: updateError } = await supabase
-      .from('tv_rankings')
+      .from('belevision')
       .update({ rank: tv.rank + 1 })
       .eq('id', tv.id);
 
@@ -49,8 +49,8 @@ export default async function addTV(name, director, comments, imageFile, rank) {
     }
   }
   const { data, error } = await supabase
-    .from('tv_rankings')
-    .insert([{ name, director, comments, image: imageUrl, rank }]);
+    .from('belevision')
+    .insert([{ name, director, r_comments, p_comments, image: imageUrl, rank }]);
   if (error) {
     console.error('Error inserting data:', error);
     return null;

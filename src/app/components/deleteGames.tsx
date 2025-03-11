@@ -6,7 +6,7 @@ import deleteGames from "../../../utils/deleteGames";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 
-export default function DeleteGames({ id, rank }: { id: string; rank: number }) {
+export default function DeleteGames({ id }: { id: string }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
@@ -22,7 +22,7 @@ export default function DeleteGames({ id, rank }: { id: string; rank: number }) 
         e.preventDefault();
         setLoading(true);
         try {
-            await deleteGames(id, rank);
+            await deleteGames(id);
             setModalOpen(false);
         } catch (error) {
             console.log("Error deleting game:", error);

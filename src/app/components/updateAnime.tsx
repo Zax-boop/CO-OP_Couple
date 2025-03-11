@@ -9,11 +9,12 @@ import { User } from '@supabase/supabase-js';
 import { Pencil } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
 
-export default function UpdateAnimeModal({ anime }: {
+export default function UpdateGhibliModal({ anime }: {
     anime: {
         name: string;
-        studio: string;
-        comments: string;
+        director: string;
+        r_comments: string;
+        p_comments: string;
         image: string;
         rank: number;
         id: string;
@@ -21,8 +22,9 @@ export default function UpdateAnimeModal({ anime }: {
 }) {
     const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(anime?.name || '');
-    const [studio, setStudio] = useState(anime?.studio || '');
-    const [comments, setComments] = useState(anime?.comments || '');
+    const [director, setDirector] = useState(anime?.director || '');
+    const [rComments, setRComments] = useState(anime?.r_comments || '');
+    const [pComments, setPComments] = useState(anime?.p_comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(anime?.rank || '');
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(anime?.image || show_placeholder);
@@ -41,8 +43,9 @@ export default function UpdateAnimeModal({ anime }: {
     useEffect(() => {
         if (anime) {
             setName(anime.name || '');
-            setStudio(anime.studio || '');
-            setComments(anime.comments || '');
+            setDirector(anime.director || '');
+            setRComments(anime.r_comments || '');
+            setPComments(anime.p_comments || '');
             setRank(anime.rank || '');
             setCoverImage(anime.image || show_placeholder);
         }
@@ -63,8 +66,9 @@ export default function UpdateAnimeModal({ anime }: {
         try {
             const updatedFields = {
                 name,
-                studio,
-                comments: comments,
+                director,
+                r_comments: rComments,
+                p_comments: pComments,
                 imageFile,
                 rank: Number(rank),
             };
@@ -121,17 +125,24 @@ export default function UpdateAnimeModal({ anime }: {
                                 <input
                                     type="text"
                                     className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Studio"
-                                    value={studio}
-                                    onChange={(e) => setStudio(e.target.value)}
+                                    placeholder="Director"
+                                    value={director}
+                                    onChange={(e) => setDirector(e.target.value)}
                                 />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
+                                 {user?.email == 'rohan.arya01@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Rohan Comments"
+                                    value={rComments}
+                                    onChange={(e) => setRComments(e.target.value)}
                                     rows={3}
-                                />
+                                />}
+                                {user?.email == 'prarthanarawal926@gmail.com' && <textarea
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                    placeholder="Prath Comments"
+                                    value={pComments}
+                                    onChange={(e) => setPComments(e.target.value)}
+                                    rows={3}
+                                />}
                                 <input
                                     type="number"
                                     className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"

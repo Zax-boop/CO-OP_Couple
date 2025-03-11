@@ -8,16 +8,17 @@ import addAnime from "../../../utils/addAnime"
 import { User } from '@supabase/supabase-js';
 import supabase from '../../../utils/supabaseclient';
 
-export default function AnimeForm() {
+export default function GhibliForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [name, setName] = useState('');
-    const [studio, setStudio] = useState('');
-    const [comments, setComments] = useState('');
+    const [director, setDirector] = useState('');
+    const [rComments, setRComments] = useState('');
+    const [pComments, setPComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState("")
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
-    const [studioFocus, setStudioFocus] = useState(false);
+    const [directorFocus, setDirectorFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
     const [rankFocus, setRankFocus] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ export default function AnimeForm() {
         e.preventDefault();
         setLoading(true);
         try {
-            await addAnime(name, studio, comments, imageFile, Number(rank));
+            await addAnime(name, director, rComments, pComments, imageFile, Number(rank));
             setIsModalOpen(false);
         } catch (error) {
             console.error("Error adding anime:", error);
@@ -56,7 +57,7 @@ export default function AnimeForm() {
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div className={`flex flex-row w-full justify-end`}>
                 <label onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
-                    Add Anime
+                    Add Ghibli
                     <PlusIcon className="w-5 h-5 mr-2" />
                 </label>
             </div>
@@ -69,7 +70,7 @@ export default function AnimeForm() {
                         >
                             ✕
                         </button>
-                        <h2 className="text-2xl font-bold mb-4">Add a New Anime</h2>
+                        <h2 className="text-2xl font-bold mb-4">Add a New Ghibli Movie</h2>
                         <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                             <div className='flex flex-row w-full'>
                                 <div className='w-1/2 self-start flex flex-col items-center gap-3'>
@@ -89,7 +90,7 @@ export default function AnimeForm() {
                                         <input
                                             type="text"
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Anime Name"
+                                            placeholder="Ghibli Name"
                                             value={name}
                                             onFocus={() => setNameFocus(true)}
                                             onBlur={() => setNameFocus(false)}
@@ -104,32 +105,47 @@ export default function AnimeForm() {
                                         <input
                                             type="text"
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Studio"
-                                            value={studio}
-                                            onFocus={() => setStudioFocus(true)}
-                                            onBlur={() => setStudioFocus(false)}
-                                            onChange={(e) => setStudio(e.target.value)}
+                                            placeholder="Director"
+                                            value={director}
+                                            onFocus={() => setDirectorFocus(true)}
+                                            onBlur={() => setDirectorFocus(false)}
+                                            onChange={(e) => setDirector(e.target.value)}
                                         />
                                         <span
-                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${studioFocus || studio ? "w-full" : "w-0"
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${directorFocus || director ? "w-full" : "w-0"
                                                 }`}
                                         />
                                     </div>
-                                    <div className="relative group">
+                                    {user?.email == 'rohan.arya01@gmail.com' && <div className="relative group">
                                         <textarea
-                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Comments"
-                                            value={comments}
+                                            className="w-full bg-transparent text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Rohan's comments"
+                                            value={rComments}
                                             onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
-                                            onChange={(e) => setComments(e.target.value)}
+                                            onChange={(e) => setRComments(e.target.value)}
                                             rows={3}
                                         />
                                         <span
-                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || rComments ? "w-full" : "w-0"
                                                 }`}
                                         />
-                                    </div>
+                                    </div>}
+                                    {user?.email == 'prarthanarawal926@gmail.com' && <div className="relative group">
+                                        <textarea
+                                            className="w-full bg-transparent text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Prath's comments"
+                                            value={pComments}
+                                            onFocus={() => setCommentFocus(true)}
+                                            onBlur={() => setCommentFocus(false)}
+                                            onChange={(e) => setPComments(e.target.value)}
+                                            rows={3}
+                                        />
+                                        <span
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || pComments ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>}
                                     <div className="relative group">
                                         <input
                                             type="number"
@@ -150,8 +166,8 @@ export default function AnimeForm() {
                                 {!user && <p className=' text-red-600'>You are not authenticated.</p>}
                                 <button
                                     type="submit"
-                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user || name == "" || studio == "") && `opacity-70`} `}
-                                    disabled={loading || !user || name == "" || studio == ""}
+                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user || name == "" || director == "") && `opacity-70`} `}
+                                    disabled={loading || !user || name == "" || director == ""}
                                 >
                                     {loading ? (
                                         <svg

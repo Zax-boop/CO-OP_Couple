@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Header from "../components/header";
-import fetchClimbingMedia from "../../../utils/fetchClimbingMedia";
 import Image from "next/image";
 import PoppingLetters from "../components/poppingLetters";
 import { PlusIcon } from "lucide-react";
@@ -13,6 +12,7 @@ import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 import { useMediaQuery } from "react-responsive";
 import VideoWithPlaceholder from "../components/placeholderVideo";
+import fetchSportsMedia from "../../../utils/fetchClimbingMedia";
 
 export default function Climbing() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
@@ -37,7 +37,7 @@ export default function Climbing() {
     }, []);
     useEffect(() => {
         const fetchMedia = async () => {
-            const media = await fetchClimbingMedia();
+            const media = await fetchSportsMedia();
             setMediaFiles(media);
         };
 
@@ -55,8 +55,8 @@ export default function Climbing() {
     };
 
     const backgroundVideos = mediaFiles
-        .filter((file) => file.name.endsWith(".mp4"))
-        .filter((_, index) => (index >= 4 && index < 6) || index === 1);
+        // .filter((file) => file.name.endsWith(".mp4"))
+        .filter((_, index) => (index >= 0 && index < 2) || index === 1);
 
     const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
 

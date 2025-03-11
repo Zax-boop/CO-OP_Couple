@@ -12,14 +12,13 @@ export default function GameForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [name, setName] = useState('');
     const [studio, setStudio] = useState('');
-    const [comments, setComments] = useState('');
+    const [rComments, setRComments] = useState('');
+    const [pComments, setPComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
-    const [rank, setRank] = useState("")
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(game_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
     const [studioFocus, setStudioFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
-    const [rankFocus, setRankFocus] = useState(false);
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
@@ -40,7 +39,7 @@ export default function GameForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addGame(name, studio, comments, imageFile, Number(rank));
+        await addGame(name, studio, rComments, pComments, imageFile);
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload()
@@ -110,35 +109,36 @@ export default function GameForm() {
                                                 }`}
                                         />
                                     </div>
-                                    <div className="relative group">
+                                    {user?.email == 'rohan.arya01@gmail.com' && <div className="relative group">
                                         <textarea
-                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Comments"
-                                            value={comments}
+                                            className="w-full bg-transparent text-2xl outline-none text-green-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Rohan's comments"
+                                            value={rComments}
                                             onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
-                                            onChange={(e) => setComments(e.target.value)}
-                                            rows={3}
+                                            onChange={(e) => setRComments(e.target.value)}
+                                            rows={3} 
                                         />
                                         <span
-                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || rComments ? "w-full" : "w-0"
                                                 }`}
                                         />
-                                    </div>
-                                    <div className="relative group">
-                                        <input
-                                            type="number"
-                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Rank"
-                                            value={rank}
-                                            onFocus={() => setRankFocus(true)}
-                                            onBlur={() => setRankFocus(false)}
-                                            onChange={(e) => setRank(e.target.value)}
+                                    </div>}
+                                    {user?.email == 'prarthanarawal926@gmail.com' && <div className="relative group">
+                                        <textarea
+                                            className="w-full bg-transparent text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Prath's comments"
+                                            value={pComments}
+                                            onFocus={() => setCommentFocus(true)}
+                                            onBlur={() => setCommentFocus(false)}
+                                            onChange={(e) => setPComments(e.target.value)}
+                                            rows={3} 
                                         />
                                         <span
-                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus || rank ? "w-full" : "w-0"}`}
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || pComments ? "w-full" : "w-0"
+                                                }`}
                                         />
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                             <div className='flex flex-col w-full items-center'>
