@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { ListOrdered, ScrollText } from "lucide-react";
+import { ListOrdered } from "lucide-react";
 export default function HomeHeader() {
     const lineRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);

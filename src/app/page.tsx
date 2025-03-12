@@ -6,10 +6,10 @@ import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
 import Image from "next/image";
 import VideoSlider from "./components/videoSlider";
-import ExperienceTimeline from "./components/experienceTimeline";
+// import ExperienceTimeline from "./components/experienceTimeline";
 import AboutSection from "./components/aboutSection";
-import ProjectSection from "./components/projectSection";
-import ContactSection from "./components/contactSection";
+// import ProjectSection from "./components/projectSection";
+// import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import { useMediaQuery } from "react-responsive";

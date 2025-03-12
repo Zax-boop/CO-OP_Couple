@@ -10,8 +10,8 @@ import ImageTrack from '../components/ImageTrack';
 import SignInForm from '../components/signIn';
 import DeleteTV from '../components/deleteTV';
 import UpdateTVModal from '../components/updateTV';
-import { User } from '@supabase/supabase-js';
-import supabase from '../../../utils/supabaseclient';
+// import { User } from '@supabase/supabase-js';
+// import supabase from '../../../utils/supabaseclient';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -23,14 +23,14 @@ export default function TVRanking() {
         rank: number;
         id: string;
     }[]>([]);
-    const [user, setUser] = useState<User | null>(null);
-    useEffect(() => {
-        const getSession = async () => {
-            const { data } = await supabase.auth.getSession();
-            setUser(data.session?.user || null);
-        };
-        getSession();
-    }, []);
+    // const [user, setUser] = useState<User | null>(null);
+    // useEffect(() => {
+    //     const getSession = async () => {
+    //         const { data } = await supabase.auth.getSession();
+    //         setUser(data.session?.user || null);
+    //     };
+    //     getSession();
+    // }, []);
     const [filteredMedia, setFilteredMedia] = useState(tv);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)

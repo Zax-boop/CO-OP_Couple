@@ -24,7 +24,7 @@ export default function Mushroom() {
             };
         };
     }[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [pageLoading, setPageLoading] = useState(false)
     const [showWarning, setShowWarning] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -63,11 +63,6 @@ export default function Mushroom() {
     if (pageLoading) {
         return <div>Loading...</div>;
     }
-    const backgroundVideos = mediaFiles
-        .filter((file) => file.name.endsWith(".jpg"))
-        .filter((_, index) => (index >= 0 && index < 2) || index === 1);
-
-    const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
 
     return (
         <div className="flex flex-col w-full h-full items-center bg-red-200">

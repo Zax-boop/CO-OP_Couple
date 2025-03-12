@@ -33,7 +33,7 @@ export default function Ghibli() {
     const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
 
     const animeRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
-    const videoRef = useRef<HTMLVideoElement>(null);
+    // const videoRef = useRef<HTMLVideoElement>(null);
 
     const searchSectionRef = useRef<HTMLDivElement>(null);
     const switchPage = (pageIndex: number) => {
