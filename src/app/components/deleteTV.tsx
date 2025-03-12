@@ -37,7 +37,7 @@ export default function DeleteTV({ id, rank }: { id: string; rank: number }) {
                 onClick={() => setModalOpen(true)}
                 className="hover:bg-red-400 transition duration-300 ease-in-out p-1 rounded-lg self-start"
             >
-                <Trash2 />
+                <Trash2 color="black"/>
             </div>
             {modalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

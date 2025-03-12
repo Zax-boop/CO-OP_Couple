@@ -85,7 +85,7 @@ export default function UpdateGhibliModal({ anime }: {
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
-                <Pencil />
+                <Pencil color='black'/>
             </div>
             {modalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div className="bg-black w-full sm:max-w-[40rem] xl:max-w-[50rem] sm:p-2 xl:p-4 rounded-lg shadow-lg relative">

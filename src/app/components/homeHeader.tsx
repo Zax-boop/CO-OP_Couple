@@ -42,7 +42,7 @@ export default function HomeHeader() {
                             <ListOrdered className="xs:w-[1.8rem] sm:w-[1.5rem] sm:h-[1.5rem] self-start p-0.5 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300" />
                         </button>
                         <ul
-                            className={`absolute left-0 mt-0 bg-white border border-gray-200 rounded-md shadow-md xs:w-[8rem] sm:w-48 transition-all duration-300 ease-in-out ${dropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                            className={`absolute xs:right-0 md:left-0 mt-0 bg-white border border-gray-200 rounded-md shadow-md xs:w-[8rem] sm:w-48 transition-all duration-300 ease-in-out ${dropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
                                 }`}
                         >
                             <li>
