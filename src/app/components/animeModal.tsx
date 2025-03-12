@@ -131,7 +131,7 @@ export default function GhibliForm() {
                                                 }`}
                                         />
                                     </div>}
-                                    {user?.email == 'prarthanarawal926@gmail.com' && <div className="relative group">
+                                    {user?.email == 'prathinator@mushroom.com' && <div className="relative group">
                                         <textarea
                                             className="w-full bg-transparent text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Prath's comments"

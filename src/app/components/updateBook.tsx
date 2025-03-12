@@ -132,7 +132,7 @@ export default function UpdateBookModal({ book }: {
                                     onChange={(e) => setRComments(e.target.value)}
                                     rows={3}
                                 />}
-                                {user?.email == 'prarthanarawal926@gmail.com' && <textarea
+                                {user?.email == 'prathinator@mushroom.com' && <textarea
                                     className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-purple-500 border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Prath Comments"
                                     value={pComments}
