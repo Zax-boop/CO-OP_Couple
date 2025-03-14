@@ -46,20 +46,35 @@ export default function Climbing() {
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
-            const file = event.target.files[0];
-            if (file) {
+            try {
+                setPageLoading(true);
+                const file = event.target.files[0];
                 await addClimbingMedia(file);
-                window.location.reload()
+                window.location.reload();
+            } catch (error) {
+                console.log("Error adding media:", error);
+            } finally {
+                setPageLoading(false);
             }
+            // const file = event.target.files[0];
+            // if (file) {
+            //     await addClimbingMedia(file);
+            //     window.location.reload()
+            // }
         }
     };
 
     const backgroundVideos = mediaFiles
-        // .filter((file) => file.name.endsWith(".mp4"))
-        .filter((_, index) => (index >= 0 && index < 2) || index === 1);
+        .filter((file) => file.name.endsWith(".mp4"))
+        .filter((_, index) => (index >= 0 && index <= 3));
 
     const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
 
+    const [pageLoading, setPageLoading] = useState(false)
+
+    if (pageLoading) {
+        return <div>Loading...</div>;
+    }
     return (
         <div className="flex flex-col w-full h-full items-center bg-orange-200">
             <Header />
@@ -117,7 +132,7 @@ export default function Climbing() {
                                         objectFit="cover"
                                         className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75`}
                                     />
-                                ) : ["mp4"].includes(fileExt || "") ? (
+                                ) : ["mp4", ".mov"].includes(fileExt || "") ? (
                                     <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75" />
 
                                 ) : null}

@@ -11,6 +11,7 @@ import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/homeHeader";
+import ExperienceTimeline from "./components/experienceTimeline";
 
 const videos = ["/hatch_demo.mp4", "prismera_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 
@@ -59,7 +60,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", scroll);
   }, []);
   return (
-    <div className={`flex flex-col w-full h-full items-center`}>
+    <div className={`flex flex-col w-full h-full items-center bg-[#96c484]`}>
       <SignInForm />
       <svg
         width={isMobile ? "200" : "100%"}
@@ -82,14 +83,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative flex flex-col w-4/5 items-start z-10">
           <PoppingLetters
-            className="font-semibold xs:text-[2rem] sm:text-[5rem] lg:text-[7rem] xl:text-[9rem] xs:mt-2 sm:mt-0 xl:mt-12"
+            className="font-semibold xs:text-[2rem] sm:text-[5rem] lg:text-[7rem] xl:text-[7rem] 2xl:text-[9rem] xs:mt-2 sm:mt-0 xl:mt-12"
             text={"The CO-OP Couple"}
           />
           <div className="flex xs:flex-col xl:flex-row justify-between w-full xs:mt-2 xl:mt-20">
             <div className="flex flex-col w-4/5">
               <PoppingLetters
-                className="xs:text-[1.1rem] sm:text-[3rem] xl:text-6xl 2xl:text-7xl"
-                text="Full Stack Developer Based in California"
+                className="xs:text-[1.1rem] sm:text-[3rem] xl:text-[5rem] xl:leading-[4rem] 2xl:text-7xl"
+                text="An Immersive Experience of Our Interests and Hobbies"
                 initialDelay={1000}
                 speed={30}
               />
@@ -104,10 +105,10 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-2 xl:mt-[1rem] z-10">
-        {/* <LazyLoader id="experience">
+        <LazyLoader id="experience">
           <ExperienceTimeline />
         </LazyLoader>
-        <LazyLoader id="projects">
+        {/* <LazyLoader id="projects">
           <ProjectSection />
         </LazyLoader> */}
         <LazyLoader id="about">

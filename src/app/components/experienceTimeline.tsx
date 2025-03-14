@@ -51,7 +51,7 @@ export default function ExperienceTimeline() {
                 >
                     <div className='flex flex-col'>
                         <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
-                            <VideoWithPlaceholder className='w-full cursor-pointer' src='/prismera_demo.mp4' />
+                            <img className='w-full cursor-pointer' src='/prath_ex.jpg' />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Prismera</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
