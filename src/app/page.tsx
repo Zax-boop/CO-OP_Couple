@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import PoppingLetters from "./components/poppingLetters";
-import VideoSlider from "./components/videoSlider";
 // import ExperienceTimeline from "./components/experienceTimeline";
 import AboutSection from "./components/aboutSection";
 // import ProjectSection from "./components/projectSection";
@@ -12,8 +11,26 @@ import LazyLoader from "./components/lazyLoader";
 import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/homeHeader";
 import ExperienceTimeline from "./components/experienceTimeline";
+import ImageSlider from "./components/imageSlider";
 
-const videos = ["/hatch_demo.mp4", "prismera_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
+const images: string[] = [
+  "/slider1.jpg",
+  "/slider2.jpg",
+  "/slider3.jpg",
+  "/slider4.jpg",
+  "/slider5.jpg",
+  "/slider6.jpg",
+  "/slider7.jpg",
+  "/slider8.jpg",
+  "/slider9.jpg",
+  "/slider10.jpg",
+  "/slider11.jpg",
+  "/slider12.jpg",
+  "/slider13.jpg",
+  "/slider14.jpg",
+  "/slider15.jpg",
+  "/slider16.jpg",
+];
 
 export default function Home() {
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
@@ -99,7 +116,7 @@ export default function Home() {
               className={`flex transform transition-transform duration-200 hover:scale-105 flex-col justify-end items-end w-2/5 ${!timer && "opacity-0"
                 } animate-fadeInDelayed xs:mb-[0rem] sm:mb-0`}
             >
-              <VideoSlider videos={videos} />
+              <ImageSlider images={images} />
             </div>}
           </div>
         </div>

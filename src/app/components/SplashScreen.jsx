@@ -37,11 +37,11 @@ const SplashScreen = ({ finishLoading }) => {
             <div className="relative">
                 <div
                     id="logo"
-                    className="min-w-[5rem] min-h-[5rem] flex flex-row justify-center items-center"
+                    className="min-w-[8rem] min-h-[4rem] flex flex-row justify-center items-center"
                     style={{ opacity: 0 }}>
                     <p
                     className="text-[3.5rem]"
-                    >RA</p>
+                    >PRA</p>
                 </div>
                 <span
                     id="bottom-line"

@@ -6,10 +6,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import climbing_app from "../../../public/climbing_app.jpg"
 import cinema from "../../../public/cinema.jpg"
-import hades from "../../../public/hades_ex.webp"
-import sopranos from "../../../public/sopranos_ex.jpg"
-import cb from "../../../public/cb.jpg"
-import camus from "../../../public/camus.webp"
+import book_ex from "../../../public/book_ex.jpg"
+import belevision_ex from "../../../public/belevision_ex.jpg"
+import ghibli_ex from "../../../public/ghibli_ex.jpg"
+import mush_ex from "../../../public/mush_ex.jpg"
+import video_games_ex from "../../../public/video_games_ex.jpg"
 import { useRef, useState, useEffect } from 'react'
 
 export default function AboutSection() {
@@ -83,25 +84,25 @@ export default function AboutSection() {
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/books' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={camus} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={book_ex} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Books</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/belevision' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={sopranos} alt='sopranos_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={belevision_ex} alt='sopranos_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Da Belevision</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/ghibli' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={cb} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={ghibli_ex} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Ghibli</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/mushroom' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={climbing_app} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={mush_ex} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Mushroom</p>
           </Link>
         </FadeInSection>
@@ -113,7 +114,7 @@ export default function AboutSection() {
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/games' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={hades} alt='hades_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={video_games_ex} alt='hades_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Video Games</p>
           </Link>
         </FadeInSection>

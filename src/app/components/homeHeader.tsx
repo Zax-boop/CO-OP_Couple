@@ -31,7 +31,7 @@ export default function HomeHeader() {
         <header className={`w-4/5 flex flex-col items-start mt-4 xs:py-1 xl:py-3`}>
             <div className="flex flex-row items-center w-full justify-between">
                 <Link href={"/"} className="font-semibold text-xl cursor-pointer p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">
-                    RA
+                    PRA
                 </Link>
                 <div className={`flex flex-row mt-2 gap-2`}>
                     <div className="relative z-[100]" onMouseLeave={() => setDropdownOpen(false)}>
@@ -42,7 +42,7 @@ export default function HomeHeader() {
                             <ListOrdered className="xs:w-[1.8rem] sm:w-[1.5rem] sm:h-[1.5rem] self-start p-0.5 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300" />
                         </button>
                         <ul
-                            className={`absolute xs:right-0 md:left-0 mt-0 bg-white border border-gray-200 rounded-md shadow-md xs:w-[8rem] sm:w-48 transition-all duration-300 ease-in-out ${dropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                            className={`absolute xs:right-0  mt-0 bg-white border border-gray-200 rounded-md shadow-md xs:w-[8rem] sm:w-48 transition-all duration-300 ease-in-out ${dropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
                                 }`}
                         >
                             <li>
