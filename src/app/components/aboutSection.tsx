@@ -38,7 +38,7 @@ export default function AboutSection() {
     };
   }, []);
   return (
-    <div className='flex flex-col mt-10'>
+    <div className='flex flex-col justify-end mt-10'>
       <p className="w-full flex flex-row justify-center xs:text-2xl sm:text-4xl xl:text-5xl font-semibold bg-gradient-to-r from-purple-400 via-green-300 to-blue-500 bg-clip-text text-transparent">
         About Us
       </p>
@@ -49,18 +49,17 @@ export default function AboutSection() {
           }`}
       />
       <FadeInSection className='mt-[1rem]'>
-        <div className='flex xs:flex-col sm:flex-row xs:gap-4 sm:gap-8'>
+        <div className='flex xs:flex-col sm:flex-row 2xl:justify-center xs:gap-4 sm:gap-8'>
           <img src={"/bohan_ex.jpg"} className='xs:w-full self-start sm:w-[20rem] xl:w-[25rem] xs:rounded-md xl:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
-          <p className='xs:text-sm sm:text-xl xl:text-7xl 2xl:text-2xl font-medium text-purple-200'>
-
+          <p className='xs:text-sm sm:text-xl xl:text-7xl 2xl:text-7xl font-medium text-purple-200 text-right'>
             My name is Bohan. <br /> I mega munch. <br /> I do code. <br /> I am type. <br /> I sports. <br /> I game. <br /> I schlebb.
           </p>
         </div>
       </FadeInSection>
       <FadeInSection className=''>
-        <div className='flex xs:flex-col sm:flex-row xs:gap-4 sm:gap-8 xs:mt-[0.5rem] sm:mt-4'>
+        <div className='flex xs:flex-col sm:flex-row 2xl:justify-center xs:gap-4 sm:gap-8 xs:mt-[0.5rem] sm:mt-4'>
           <div className='flex flex-col gap-2 sm:text-xl xs:text-sm 2xl:text-2xl font-medium'>
-            <p className='xs:text-sm sm:text-xl xl:text-6xl 2xl:text-2xl font-medium text-blue-200'>My name is Prath.  <br /> I do studious.  <br /> I drink 3 coffees a day.  <br /> I schlebb.  <br /> I&apos;m having caffeine withdrawals today actually. </p>
+            <p className='xs:text-sm sm:text-xl xl:text-6xl 2xl:text-7xl font-medium text-blue-200'>My name is Prath.  <br /> I do studious.  <br /> I drink 3 coffees a day.  <br /> I schlebb.  <br /> I&apos;m having caffeine withdrawals today actually. </p>
             <p className='xs:text-[0.5rem] sm:text-sm text-blue-200'>
               Oh my god. I was not expecting you to add that. </p>
           </div>
@@ -68,9 +67,9 @@ export default function AboutSection() {
         </div>
       </FadeInSection>
       <FadeInSection className='mt-[1rem]'>
-        <div className='flex xs:flex-col sm:flex-row xs:gap-4 sm:gap-8'>
+        <div className='flex xs:flex-col sm:flex-row 2xl:justify-center xs:gap-4 sm:gap-8'>
           <img src={"/co-op_ex.jpg"} className='xs:w-full self-start sm:w-[20rem] xl:w-[25rem] xs:rounded-md xl:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
-          <p className='xs:text-sm sm:text-xl xl:text-7xl 2xl:text-2xl font-medium text-green-200'>
+          <p className='xs:text-sm sm:text-xl xl:text-7xl 2xl:text-7xl font-medium text-green-200 text-right'>
             Wii Sports. <br /> We cook. <br /> We munch. <br /> We climb. <br /> We read. <br /> We game. <br /> We music. <br /> We schlebb. <br /> We mushroom.
           </p>
         </div>

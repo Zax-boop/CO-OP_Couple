@@ -5,7 +5,7 @@ const Header = () => {
     const pathname = usePathname()
     return <header className={`flex text-black flex-row justify-between items-center mt-4 xs:w-[90%] sm:w-4/5 border-[0.5px] border-[#333] py-2 sm:py-3 xs:px-3 sm:px-6 rounded-full ${pathname === "/" && `animate-borderTransition`} hover:border-white/[0.3] transition-all duration-500 ease-in`}>
     <Link href={"/"} className="font-semibold xs:text-sm sm:text-xl p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">PRA</Link>
-    <div className="flex flex-row gap-2 sm:gap-[1rem]">
+    <div className="flex flex-row xs:gap-1.5 sm:gap-[1rem]">
       <Link href={"/album_ranking"} className="relative group">
         <p className="font-semibold xs:text-[0.4rem] sm:text-base">Albums</p>
         <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-black transition-all group-hover:w-full"></span>
@@ -20,6 +20,10 @@ const Header = () => {
       </Link>
       <Link href={"/ghibli"} className="relative group">
         <p className="font-semibold xs:text-[0.4rem] sm:text-base">Ghibli</p>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-black transition-all group-hover:w-full"></span>
+      </Link>
+      <Link href={"/munch"} className="relative group">
+        <p className="font-semibold xs:text-[0.4rem] sm:text-base">Munch</p>
         <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-black transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/mushroom"} className="relative group">

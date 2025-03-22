@@ -64,31 +64,46 @@ export default function Munch() {
     }
 
     return (
-        <div className="flex flex-col w-full h-full items-center bg-red-200">
+        <div className="flex flex-col w-full h-full items-center bg-orange-500">
             <Header />
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10  overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
-                        <img
-                            src={"/m1.jpg"}
-                            className={`w-full object-fill duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
+                        <video
+                            src={"/munch2.mp4"}
+                            autoPlay
+                            loop
+                            muted
+                            controls={false}
+                            playsInline
+                            className={`h-full w-full object-cover duration-700 ease-in-out group-hover:opacity-75`}
                         />
                     </div>
                     <div className='w-1/3 h-full'>
-                        <img
-                            src={"/m4.jpg"}
-                            className={`w-full h-1/2 object-cover duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
+                        <video
+                            src={"/munch1.mp4"}
+                            autoPlay
+                            loop
+                            muted
+                            controls={false}
+                            playsInline
+                            className={`h-1/2 object-cover duration-700 ease-in-out group-hover:opacity-75`}
                         />
                         <img
-                            src={"/m3.jpg"}
+                            src={"/munch4.jpeg"}
                             className={`w-full h-1/2 object-cover duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
                         />
                     </div>
                     <div className='w-1/3 h-full'>
-                        <img
-                            src={"/m2.jpg"}
-                            className={`w-full object-fill duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
+                    <video
+                            src={"/munch3.mp4"}
+                            autoPlay
+                            loop
+                            muted
+                            controls={false}
+                            playsInline
+                            className={`h-full w-full object-cover duration-700 ease-in-out group-hover:opacity-75`}
                         />
                     </div>
                 </div>
@@ -127,7 +142,7 @@ export default function Munch() {
                                         objectFit="cover"
                                         className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75`}
                                     />
-                                ) : ["mp4"].includes(fileExt || "") ? (
+                                ) : ["mp4", "mov"].includes(fileExt || "") ? (
                                     <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75" />
 
                                 ) : null}
