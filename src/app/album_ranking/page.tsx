@@ -90,7 +90,7 @@ export default function Albums() {
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
                         <video
-                            src={"/sweet_trip_mp4.mp4"}
+                            src={"/pink.mp4"}
                             autoPlay
                             loop
                             muted
@@ -103,7 +103,7 @@ export default function Albums() {
                             onLoadedData={() => setIsLoading(false)}
                         />
                         <video
-                            src={"/nirvana_mp4.mp4"}
+                            src={"/carole.mp4"}
                             autoPlay
                             loop
                             muted
@@ -118,7 +118,7 @@ export default function Albums() {
                     </div>
 
                     <video
-                        src={"/marias_mp4.mp4"}
+                        src={"/marias.mp4"}
                         autoPlay
                         loop
                         muted
@@ -131,7 +131,7 @@ export default function Albums() {
                         onLoadedData={() => setIsLoading(false)}
                     />
                     <video
-                        src={"/gorillaz_mp4.mp4"}
+                        src={"/ari.mp4"}
                         autoPlay
                         loop
                         muted

@@ -10,7 +10,7 @@ import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/homeHeader";
-import ExperienceTimeline from "./components/experienceTimeline";
+// import ExperienceTimeline from "./components/experienceTimeline";
 import ImageSlider from "./components/imageSlider";
 
 const images: string[] = [
@@ -122,9 +122,9 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-2 xl:mt-[1rem] z-10">
-        <LazyLoader id="experience">
+        {/* <LazyLoader id="experience">
           <ExperienceTimeline />
-        </LazyLoader>
+        </LazyLoader> */}
         {/* <LazyLoader id="projects">
           <ProjectSection />
         </LazyLoader> */}
