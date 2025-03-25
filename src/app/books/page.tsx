@@ -7,13 +7,14 @@ import BookForm from "../components/bookModal";
 import FadeInSection from "../components/fadeIn";
 import Image from "next/image";
 import circe from "../../../public/circe.jpg";
-import atss from "../../../public/atss.jpg";
-import sisyphus from "../../../public/sisyphus.jpg";
+import six from "../../../public/six.jpg";
 import fetchBooks from "../../../utils/fetchBooks.js";
 import ImageTrack from "../components/ImageTrack";
 import SignInForm from "../components/signIn";
 import DeleteBook from "../components/deleteBook";
 import UpdateBookModal from "../components/updateBook";
+import book_ex from "../../../public/book_ex.jpg"
+
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -110,8 +111,8 @@ export default function Books() {
                     </div>
                     <div className="w-1/3 h-full">
                         <Image
-                            src={atss}
-                            alt="Atss"
+                            src={book_ex}
+                            alt="poppy"
                             priority
                             className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
@@ -122,8 +123,8 @@ export default function Books() {
                     </div>
                     <div className="w-1/3 h-full">
                         <Image
-                            src={sisyphus}
-                            alt="Sisyphus"
+                            src={six}
+                            alt="Six of crows"
                             className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
