@@ -1,0 +1,200 @@
+export const albumGenreColors: { [key: string]: string } = {
+  ambient: "#93C5FD",       // bg-blue-300
+  alternative: "#0D9488",   // bg-teal-600
+  bossanova: "#10B981",     // bg-emerald-500
+  brazilianpop: "#34D399",  // bg-emerald-400
+  breakcore: "#E11D48",     // bg-rose-600
+  bubblegum: "#F9A8D4",     // bg-pink-300
+  classical: "#6B21A8",     // bg-purple-700
+  citypop: "#C084FC",       // bg-purple-400
+  club: "#C026D3",          // bg-fuchsia-600
+  country: "#CA8A04",       // bg-yellow-600
+  cpop: "#DC2626",          // bg-red-600
+  dance: "#F43F5E",         // bg-rose-500
+  dreampop: "#EC4899",      // bg-pink-500
+  electronic: "#A855F7",    // bg-purple-500
+  experimental: "#F59E0B",  // bg-amber-500
+  flamenco: "#EF4444",      // bg-red-500
+  folk: "#15803D",          // bg-green-700
+  french: "#2563EB",        // bg-blue-600
+  funk: "#A16207",          // bg-yellow-700
+  grunge: "#4B5563",        // bg-gray-600
+  hiphop: "#6366F1",        // bg-indigo-500
+  house: "#DB2777",         // bg-pink-600
+  indierock: "#EF4444",     // bg-red-500
+  indiepop: "#F87171",      // bg-red-400
+  italian: "#22C55E",       // bg-green-500
+  japanese: "#60A5FA",      // bg-blue-400
+  jazz: "#1D4ED8",          // bg-blue-700
+  jpop: "#60A5FA",          // bg-blue-400
+  jrock: "#374151",         // bg-gray-700
+  korean: "#4ADE80",        // bg-green-400
+  kpop: "#F43F5E",          // bg-rose-500
+  latin: "#FACC15",         // bg-yellow-400
+  lofi: "#38BDF8",          // bg-sky-400
+  metal: "#000000",         // bg-black
+  polish: "#EAB308",        // bg-yellow-500
+  pop: "#3B82F6",           // bg-blue-500
+  psychedelic: "#16A34A",   // bg-green-600
+  punk: "#B91C1C",          // bg-red-700
+  rap: "#1F2937",           // bg-gray-800
+  randb: "#F97316",         // bg-orange-500
+  rock: "#6B7280",          // bg-gray-500
+  sailorwave: "#FBCFE8",    // bg-pink-200
+  shoegaze: "#818CF8",      // bg-indigo-400
+  soul: "#C2410C",          // bg-orange-700
+  spanish: "#F87171",       // bg-red-400
+  synth: "#9D174D",         // bg-pink-800
+  triphop: "#4F46E5",       // bg-indigo-600
+  turkish: "#FCA5A5",       // bg-red-300
+  videogame: "#9333EA",     // bg-purple-600
+};
+
+export const belevisionGenreColors: { [key: string]: string } = {
+  action: "#DC2626",        // anime red-600
+  adventure: "#F97316",     // anime orange-500
+  comedy: "#FACC15",        // anime yellow-400
+  crime: "#374151",         // anime gray-700
+  cyberpunk: "#1E3A8A",     // anime blue-900
+  dark: "#111827",          // anime gray-900
+  drama: "#BE123C",         // anime rose-700
+  fantasy: "#A855F7",       // anime purple-500
+  historical: "#A16207",    // anime yellow-700
+  horror: "#1F2937",        // anime gray-800
+  mystery: "#1D4ED8",       // anime blue-700
+  psychological: "#4338CA", // anime indigo-700
+  romance: "#F87171",       // anime red-400
+  scifi: "#60A5FA",         // anime blue-400
+  sliceoflife: "#4ADE80",   // anime green-400
+  thriller: "#991B1B",      // anime red-800
+  western: "#D97706",       // anime amber-600
+  bl: "#93C5FD",
+  cute: "#F9A8D4",
+  ghibli: "#22C55E",
+  isekai: "#3B82F6",
+  josei: "#EC4899",
+  magic: "#6366F1",
+  mecha: "#4B5563",
+  military: "#15803D",
+  music: "#2DD4BF",
+  noir: "#6B7280",
+  philosophical: "#3730A3",
+  racing: "#991B1B",
+  samurai: "#CA8A04",
+  school: "#EAB308",
+  seinen: "#6B7280",
+  shoujo: "#F472B6",
+  shounen: "#EF4444",
+  space: "#000000",
+  sports: "#EA580C",
+  supernatural: "#9333EA",
+  vampire: "#312E81",
+  animated: "#60A5FA",
+  documentary: "#93C5FD",
+  political: "#991B1B",
+  reality: "#15803D",
+  sitcom: "#EAB308",
+};
+
+export const bookGenreColors: { [key: string]: string } = {
+  absurdist: "#6B21A8",       // bg-purple-700
+  action: "#C2410C",          // bg-orange-700
+  adventure: "#F97316",       // bg-orange-500
+  afghanistan: "#DC2626",     // bg-red-600
+  autobiography: "#0D9488",   // bg-teal-600
+  biography: "#3B82F6",       // bg-blue-500
+  classic: "#4B5563",         // bg-gray-600
+  comic: "#FB923C",           // bg-orange-400
+  crime: "#1F2937",           // bg-gray-800
+  cyberpunk: "#1E3A8A",       // bg-blue-900
+  dark: "#111827",            // bg-gray-900
+  drama: "#FCA5A5",           // bg-red-300
+  dystopian: "#B91C1C",       // bg-red-700
+  existentialist: "#4338CA",  // bg-indigo-700
+  fantasy: "#A855F7",         // bg-purple-500
+  firstperson: "#EAB308",     // bg-yellow-500
+  fiction: "#16A34A",         // bg-green-600
+  french: "#93C5FD",          // bg-blue-300
+  gothic: "#000000",          // bg-black
+  historical: "#A16207",      // bg-yellow-700
+  horror: "#1F2937",          // bg-gray-800
+  japanese: "#EF4444",        // bg-red-500
+  manga: "#C026D3",           // bg-fuchsia-600
+  memoir: "#2DD4BF",          // bg-teal-400
+  mystery: "#1D4ED8",         // bg-blue-700
+  mythology: "#CA8A04",       // bg-yellow-600
+  nonfiction: "#60A5FA",      // bg-blue-400
+  philosophical: "#3730A3",   // bg-indigo-800
+  poetry: "#D946EF",          // bg-fuchsia-500
+  political: "#991B1B",       // bg-red-800
+  postmodern: "#374151",      // bg-gray-700
+  psychological: "#4F46E5",   // bg-indigo-600
+  realist: "#16A34A",         // bg-green-600
+  roman: "#B45309",           // bg-amber-700
+  romance: "#F87171",         // bg-red-400
+  sciencefiction: "#2563EB",  // bg-blue-600
+  selfhelp: "#22C55E",        // bg-green-500
+  shortstories: "#9333EA",    // bg-purple-600
+  sliceoflife: "#4ADE80",     // bg-green-400
+  stoicism: "#9CA3AF",        // bg-gray-400
+  surrealist: "#BE185D",      // bg-pink-700
+  teenliterature: "#EA580C",  // bg-orange-600
+  thirdperson: "#6B7280",     // bg-gray-500
+  thriller: "#7F1D1D",        // bg-red-900
+  war: "#991B1B",             // bg-red-800
+  western: "#D97706",         // bg-amber-600
+};
+
+export const gameGenreColors: { [key: string]: string } = {
+  action: "#B91C1C",              // bg-red-700
+  adventure: "#F97316",           // bg-orange-500
+  arcade: "#DB2777",              // bg-pink-600
+  beatemup: "#B45309",            // bg-yellow-700
+  boomershooter: "#7F1D1D",       // bg-red-900
+  bossrush: "#D946EF",            // bg-fuchsia-500
+  card: "#F59E0B",                // bg-amber-500
+  citybuilder: "#16A34A",         // bg-green-600
+  coop: "#2563EB",                 // bg-blue-600
+  crafting: "#84CC16",             // bg-lime-500
+  detective: "#374151",            // bg-gray-700
+  dungeoncrawler: "#4C1D95",       // bg-purple-900
+  educational: "#818CF8",          // bg-indigo-400
+  farming: "#22C55E",              // bg-green-500
+  fighting: "#DC2626",             // bg-red-600
+  fps: "#1F2937",                  // bg-gray-800
+  hacknslash: "#EF4444",           // bg-red-500
+  horror: "#000000",               // bg-black
+  indie: "#0D9488",                // bg-teal-600
+  jrpg: "#BE185D",                 // bg-pink-700
+  metroidvania: "#6B21A8",         // bg-purple-700
+  mmorpg: "#1E3A8A",               // bg-blue-900
+  multiplayer: "#14B8A6",          // bg-teal-500
+  music: "#EAB308",                // bg-yellow-500
+  openworld: "#15803D",            // bg-green-700
+  party: "#14B8A6",                // bg-teal-500
+  pixelart: "#A21CAF",             // bg-fuchsia-700
+  platformer: "#EA580C",           // bg-orange-600
+  platformfighter: "#DB2777",      // bg-rose-600
+  pointandclick: "#2DD4BF",        // bg-teal-400
+  puzzle: "#60A5FA",               // bg-blue-400
+  racing: "#FB923C",               // bg-orange-400
+  rhythm: "#EC4899",               // bg-pink-500
+  roguelike: "#4B5563",            // bg-gray-600
+  rpg: "#A855F7",                  // bg-purple-500
+  sandbox: "#CA8A04",              // bg-yellow-600
+  scifi: "#2563EB",                // bg-blue-600
+  shooter: "#1F2937",              // bg-gray-800
+  simulation: "#4ADE80",           // bg-green-400
+  soulsborne: "#6B7280",           // bg-gray-500
+  soulslike: "#374151",            // bg-gray-700
+  sports: "#16A34A",               // bg-emerald-600
+  stealth: "#18181B",              // bg-zinc-800
+  strategy: "#4338CA",             // bg-indigo-700
+  survival: "#B45309",             // bg-amber-700
+  tacshooter: "#047481",           // bg-cyan-700
+  thirdpersonshooter: "#1E293B",   // bg-slate-800
+  topdown: "#FBCFE8",              // bg-fuchsia-300
+  towerdefense: "#06B6D4",         // bg-cyan-500
+  turnbased: "#0EA5E9",            // bg-sky-600
+  visualnovel: "#F43F5E",          // bg-rose-500
+};

@@ -15,6 +15,8 @@ import DeleteBook from "../components/books/deleteBook";
 import UpdateBookModal from "../components/books/updateBook";
 import book_ex from "../../../public/book_ex.jpg"
 import BookGenre from "../components/books/bookGenre";
+import GenrePieChart from "../components/general/genrePieChart";
+import { bookGenreColors } from "../../../data/genreColors";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -154,6 +156,9 @@ export default function Books() {
                     *Disclaimer: This is just our opinion and what we enjoyed reading
                     the most regardless of critical bias.
                 </p>
+                <div className='flex flex-row w-full justify-center'>
+                    <GenrePieChart genresList={books?.map((book) => book.genres)} setSearchQuery={setSearchQuery} genreColors={bookGenreColors} />
+                </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

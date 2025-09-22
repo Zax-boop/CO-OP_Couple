@@ -11,6 +11,8 @@ import SignInForm from '../components/general/signIn';
 import DeleteTV from '../components/belevision/deleteTV';
 import UpdateTVModal from '../components/belevision/updateTV';
 import TVGenre from '../components/belevision/tvGenre';
+import GenrePieChart from '../components/general/genrePieChart';
+import { belevisionGenreColors } from '../../../data/genreColors';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -90,7 +92,6 @@ export default function TVRanking() {
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
-        // <div className={`flex flex-col w-full h-full items-center bg-black bg-[url("/bg_ex.jpg")] bg-cover bg-center`}>
         <div className={`flex flex-col w-full h-full items-center bg-green-100`}>
             <Header />
             <SignInForm />
@@ -190,6 +191,9 @@ export default function TVRanking() {
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <TVForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0 text-black'>*Disclaimer: This is just our opinion and what we enjoyed watching the most regardless of critical bias. </p>
+                <div className='flex flex-row w-full justify-center'>
+                    <GenrePieChart genresList={tv?.map((belevision) => belevision.genres)} setSearchQuery={setSearchQuery} genreColors={belevisionGenreColors} />
+                </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
