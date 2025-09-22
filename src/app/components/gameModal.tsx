@@ -14,6 +14,7 @@ export default function GameForm() {
     const [studio, setStudio] = useState('');
     const [rComments, setRComments] = useState('');
     const [pComments, setPComments] = useState('');
+    const [genres, setGenres] = useState<string[]>([]);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(game_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
@@ -39,12 +40,89 @@ export default function GameForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addGame(name, studio, rComments, pComments, imageFile);
+        await addGame(name, studio, rComments, pComments, imageFile, genres);
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload()
     };
 
+    const genreColors: { [key: string]: string } = {
+        action: "bg-red-700",
+        adventure: "bg-orange-500",
+        arcade: "bg-pink-600",
+        beatemup: "bg-yellow-700",
+        boomershooter: "bg-red-900",
+        bossrush: "bg-fuchsia-500",
+        card: "bg-amber-500",
+        citybuilder: "bg-green-600",
+        coop: "bg-blue-600",
+        crafting: "bg-lime-500",
+        detective: "bg-gray-700",
+        dungeoncrawler: "bg-purple-900",
+        educational: "bg-indigo-400",
+        farming: "bg-green-500",
+        fighting: "bg-red-600",
+        fps: "bg-gray-800",
+        hacknslash: "bg-red-500",
+        horror: "bg-black",
+        indie: "bg-teal-600",
+        jrpg: "bg-pink-700",
+        metroidvania: "bg-purple-700",
+        mmorpg: "bg-blue-900",
+        music: "bg-yellow-500",
+        openworld: "bg-green-700",
+        party: "bg-teal-500",
+        pixelart: "bg-fuchsia-700",
+        platformer: "bg-orange-600",
+        platformfighter: "bg-rose-600",
+        pointandclick: "bg-teal-400",
+        puzzle: "bg-blue-400",
+        racing: "bg-orange-400",
+        rhythm: "bg-pink-500",
+        roguelike: "bg-gray-600",
+        rpg: "bg-purple-500",
+        sandbox: "bg-yellow-600",
+        scifi: "bg-blue-600",
+        simulation: "bg-green-400",
+        soulsborne: "bg-gray-500",
+        soulslike: "bg-gray-700",
+        sports: "bg-emerald-600",
+        stealth: "bg-zinc-800",
+        strategy: "bg-indigo-700",
+        survival: "bg-amber-700",
+        tacshooter: "bg-cyan-700",
+        thirdpersonshooter: "bg-slate-800",
+        topdown: "bg-fuchsia-300",
+        towerdefense: "bg-cyan-500",
+        turnbased: "bg-sky-600",
+        visualnovel: "bg-rose-500",
+    };
+
+    const genre_list = [
+        "Action", "Adventure", "Arcade", "Beat Em Up", "Boomer Shooter", "Boss Rush", "Card", "City Builder", "Co-Op",
+        "Crafting", "Detective", "Dungeon Crawler", "Educational", "Farming", "Fighting", "FPS", "Hack n Slash", "Horror", "Indie",
+        "JRPG", "Metroidvania", "MMORPG", "Music", "Open World", "Party", "Pixel Art", "Platformer", "Platform Fighter", "Point and Click",
+        "Puzzle", "Racing", "Rhythm", "Roguelike", "RPG", "Sandbox", "Sci-Fi", "Simulation", "Soulsborne",
+        "Soulslike", "Sports", "Stealth", "Strategy", "Survival", "Tac Shooter", "Third Person Shooter", "Top Down",
+        "Tower Defense", "Turn-Based", "Visual Novel"
+    ];
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
 
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
@@ -117,7 +195,7 @@ export default function GameForm() {
                                             onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
                                             onChange={(e) => setRComments(e.target.value)}
-                                            rows={3} 
+                                            rows={3}
                                         />
                                         <span
                                             className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || rComments ? "w-full" : "w-0"
@@ -132,13 +210,21 @@ export default function GameForm() {
                                             onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
                                             onChange={(e) => setPComments(e.target.value)}
-                                            rows={3} 
+                                            rows={3}
                                         />
                                         <span
                                             className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || pComments ? "w-full" : "w-0"
                                                 }`}
                                         />
                                     </div>}
+                                    <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                        {genre_list.slice().sort().map((genre, index) => (
+                                            <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                                `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                                {genre}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                             <div className='flex flex-col w-full items-center'>

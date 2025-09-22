@@ -10,6 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import SignInForm from '../components/signIn';
 import DeleteGames from '../components/deleteGames';
 import UpdateGamesModal from '../components/updateGames';
+import GameGenre from '../components/gameGenre';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<{
@@ -18,6 +19,7 @@ export default function GamesRanking() {
         image: string;
         r_comments: string;
         p_comments: string;
+        genres: string[];
         id: string;
     }[]>([]);
     const [filteredMedia, setFilteredMedia] = useState(games);
@@ -61,8 +63,9 @@ export default function GamesRanking() {
                 (game) =>
                     game.name.toLowerCase().includes(search) ||
                     game.studio.toLowerCase().includes(search) ||
-                    game.r_comments.toLowerCase().includes(search) || 
-                    game.p_comments.toLowerCase().includes(search)
+                    game.r_comments.toLowerCase().includes(search) ||
+                    game.p_comments.toLowerCase().includes(search) ||
+                    game.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
@@ -215,6 +218,7 @@ export default function GamesRanking() {
                     image: string;
                     r_comments: string;
                     p_comments: string;
+                    genres: string[];
                     id: string;
                 }, index: number) => (
                     <FadeInSection
@@ -241,7 +245,15 @@ export default function GamesRanking() {
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">{game.studio}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{game.r_comments}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{game.p_comments}</p>                             </div>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{game.p_comments}</p>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {game.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <GameGenre genre={genre} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-800 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>

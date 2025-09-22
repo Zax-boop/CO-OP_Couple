@@ -1,6 +1,6 @@
 import supabase from "./supabaseclient";
 
-export default async function addGame(name, studio, r_comments, p_comments, imageFile) {
+export default async function addGame(name, studio, r_comments, p_comments, imageFile, genres) {
   let imageUrl = "";
   if (imageFile) {
     const fileName = `${Date.now()}_${imageFile.name}`;
@@ -18,7 +18,7 @@ export default async function addGame(name, studio, r_comments, p_comments, imag
   }
   const { data, error } = await supabase
     .from('video_game_rankings')
-    .insert([{ name, studio, r_comments, p_comments, image: imageUrl}]);
+    .insert([{ name, studio, r_comments, p_comments, image: imageUrl, genres}]);
   if (error) {
     console.error('Error inserting data:', error);
     return null;

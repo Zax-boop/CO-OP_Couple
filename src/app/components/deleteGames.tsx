@@ -6,7 +6,7 @@ import deleteGames from "../../../utils/deleteGames";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 
-export default function DeleteGames({ id }: { id: string }) {
+export default function DeleteGames({ id }: { id: string; }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);

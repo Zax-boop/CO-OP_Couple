@@ -10,8 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import SignInForm from '../components/signIn';
 import DeleteTV from '../components/deleteTV';
 import UpdateTVModal from '../components/updateTV';
-// import { User } from '@supabase/supabase-js';
-// import supabase from '../../../utils/supabaseclient';
+import TVGenre from '../components/tvGenre';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -21,16 +20,9 @@ export default function TVRanking() {
         p_comments: string;
         image: string;
         rank: number;
+        genres: string[];
         id: string;
     }[]>([]);
-    // const [user, setUser] = useState<User | null>(null);
-    // useEffect(() => {
-    //     const getSession = async () => {
-    //         const { data } = await supabase.auth.getSession();
-    //         setUser(data.session?.user || null);
-    //     };
-    //     getSession();
-    // }, []);
     const [filteredMedia, setFilteredMedia] = useState(tv);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
@@ -42,7 +34,7 @@ export default function TVRanking() {
     const indexOfFirstMedia = indexOfLastMedia - mediaPerPage;
     const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
 
-    const showRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
+    const belevisionRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
     const searchSectionRef = useRef<HTMLDivElement>(null);
     const switchPage = (pageIndex: number) => {
@@ -58,7 +50,7 @@ export default function TVRanking() {
             if (data) {
                 setTV(data);
                 setFilteredMedia(data);
-                showRefs.current = data.map(() => React.createRef());
+                belevisionRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
         };
@@ -69,20 +61,21 @@ export default function TVRanking() {
         const search = searchQuery.toLowerCase();
         setFilteredMedia(
             tv.filter(
-                (show) =>
-                    show.name.toLowerCase().includes(search) ||
-                    show.director.toLowerCase().includes(search) ||
-                    show.r_comments.toLowerCase().includes(search) ||
-                    show.p_comments.toLowerCase().includes(search)
+                (belevision) =>
+                    belevision.name.toLowerCase().includes(search) ||
+                    belevision.director.toLowerCase().includes(search) ||
+                    belevision.r_comments.toLowerCase().includes(search) ||
+                    belevision.p_comments.toLowerCase().includes(search) ||
+                    belevision.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
     }, [searchQuery, tv]);
 
-    const scrollToShows = (index: number) => {
-        if (showRefs.current[index]) {
-            if (showRefs.current[index].current) {
-                showRefs.current[index].current.scrollIntoView({
+    const scrollToBelevisions = (index: number) => {
+        if (belevisionRefs.current[index]) {
+            if (belevisionRefs.current[index].current) {
+                belevisionRefs.current[index].current.scrollIntoView({
                     behavior: "smooth",
                     block: "center",
                 });
@@ -192,7 +185,7 @@ export default function TVRanking() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={currentMedia} onImageClick={scrollToShows} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[20rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
+                <ImageTrack data={currentMedia} onImageClick={scrollToBelevisions} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[20rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <TVForm />
@@ -221,24 +214,25 @@ export default function TVRanking() {
                     />
                 </div>
                 <hr className="border-t border-gray-800" />
-                {currentMedia.map((show: {
+                {currentMedia.map((belevision: {
                     name: string;
                     director: string;
                     r_comments: string;
                     p_comments: string;
                     image: string;
                     rank: number;
+                    genres: string[];
                     id: string;
                 }, index: number) => (
                     <FadeInSection
-                        key={show.id || `${show.name}-${show.director}-${index}`}
-                        ref={showRefs.current[index]}
+                        key={belevision.id || `${belevision.name}-${belevision.director}-${index}`}
+                        ref={belevisionRefs.current[index]}
                         className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
                         <div className="flex flex-row">
-                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4 text-black">{show.rank}.</h2>
+                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4 text-black">{belevision.rank}.</h2>
                             <img
-                                src={show.image}
-                                alt={`${show.name} album cover`}
+                                src={belevision.image}
+                                alt={`${belevision.name} album cover`}
                                 className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
@@ -247,16 +241,22 @@ export default function TVRanking() {
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>
-                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-black">{show.name}</p>
+                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-black">{belevision.name}</p>
                                     <div className='flex flex-row items-center gap-2'>
-                                        <DeleteTV id={show.id} rank={show.rank} />
-                                        <UpdateTVModal tv={show} />
+                                        <DeleteTV id={belevision.id} rank={belevision.rank} />
+                                        <UpdateTVModal tv={belevision} />
                                     </div>
                                 </div>
-                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">{show.director}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{show.r_comments}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{show.p_comments}</p>
-
+                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">{belevision.director}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{belevision.r_comments}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{belevision.p_comments}</p>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {belevision.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <TVGenre genre={genre} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-800 xs:my-1 sm:my-2 xl:my-4" />}

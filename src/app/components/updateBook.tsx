@@ -16,6 +16,7 @@ export default function UpdateBookModal({ book }: {
         r_comments: string;
         p_comments: string;
         image: string;
+        genres: string[];
         id: string;
     }
 }) {
@@ -24,6 +25,7 @@ export default function UpdateBookModal({ book }: {
     const [author, setAuthor] = useState(book?.author || '');
     const [rComments, setRComments] = useState(book?.r_comments || '');
     const [pComments, setPComments] = useState(book?.p_comments || '');
+    const [genres, setGenres] = useState(book?.genres || []);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(book?.image || show_placeholder);
     const [loading, setLoading] = useState(false);
@@ -45,6 +47,7 @@ export default function UpdateBookModal({ book }: {
             setRComments(book.r_comments || '');
             setPComments(book.p_comments || '');
             setCoverImage(book.image || show_placeholder);
+            setGenres(book.genres || []);
         }
     }, [book]);
 
@@ -67,6 +70,7 @@ export default function UpdateBookModal({ book }: {
                 r_comments: rComments,
                 p_comments: pComments,
                 imageFile,
+                genres,
             };
             await updateBook(book.id, updatedFields);
         } catch (error) {
@@ -78,10 +82,83 @@ export default function UpdateBookModal({ book }: {
         }
     };
 
+    const genreColors: { [key: string]: string } = {
+        absurdist: "bg-purple-700",
+        action: "bg-orange-700",
+        adventure: "bg-orange-500",
+        afghanistan: "bg-red-600",
+        autobiography: "bg-teal-600",
+        biography: "bg-blue-500",
+        classic: "bg-gray-600",
+        comic: "bg-orange-400",
+        crime: "bg-gray-800",
+        cyberpunk: "bg-blue-900",
+        dark: "bg-gray-900",
+        drama: "bg-red-300",
+        dystopian: "bg-red-700",
+        existentialist: "bg-indigo-700",
+        fantasy: "bg-purple-500",
+        firstperson: "bg-yellow-500",
+        fiction: "bg-green-600",
+        french: "bg-blue-300",
+        gothic: "bg-black",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        japanese: "bg-red-500",
+        manga: "bg-fuchsia-600",
+        memoir: "bg-teal-400",
+        mystery: "bg-blue-700",
+        mythology: "bg-yellow-600",
+        nonfiction: "bg-blue-400",
+        philosophical: "bg-indigo-800",
+        poetry: "bg-fuchsia-500",
+        political: "bg-red-800",
+        postmodern: "bg-gray-700",
+        psychological: "bg-indigo-600",
+        realist: "bg-green-600",
+        roman: "bg-amber-700",
+        romance: "bg-red-400",
+        sciencefiction: "bg-blue-600",
+        selfhelp: "bg-green-500",
+        shortstories: "bg-purple-600",
+        sliceoflife: "bg-green-400",
+        stoicism: "bg-gray-400",
+        surrealist: "bg-pink-700",
+        teenliterature: "bg-orange-600",
+        thirdperson: "bg-gray-500",
+        thriller: "bg-red-900",
+        war: "bg-red-800",
+        western: "bg-amber-600"
+    };
+
+    const genre_list = [
+        "Absurdist", "Action", "Adventure", "Afghanistan", "Autobiography", "Biography", "Classic", "Comic", "Crime", "Cyberpunk", "Dark", "Drama", "Dystopian", "Existentialist", "Fantasy", "First-Person", "French", "Gothic", "Historical", "Horror", "Japanese",
+        "Fiction", "Manga", "Memoir", "Mystery", "Mythology", "Non-Fiction", "Philosophical", "Poetry",
+        "Political", "Postmodern", "Psychological", "Realist", "Roman", "Romance", "Science Fiction", "Self-Help", "Short Stories",
+        "Slice of Life", "Stoicism", "Surrealist", "Teen Literature", "Third-Person", "Thriller", "War", "Western"
+    ];
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
+
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
-                <Pencil color='black'/>
+                <Pencil color='black' />
             </div>
             {modalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div className="bg-black w-full sm:max-w-[40rem] xl:max-w-[50rem] sm:p-2 xl:p-4 rounded-lg shadow-lg relative">
@@ -125,7 +202,7 @@ export default function UpdateBookModal({ book }: {
                                     value={author}
                                     onChange={(e) => setAuthor(e.target.value)}
                                 />
-                                  {user?.email == 'rohan.arya01@gmail.com' && <textarea
+                                {user?.email == 'rohan.arya01@gmail.com' && <textarea
                                     className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-green-800 border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Rohan Comments"
                                     value={rComments}
@@ -139,6 +216,14 @@ export default function UpdateBookModal({ book }: {
                                     onChange={(e) => setPComments(e.target.value)}
                                     rows={3}
                                 />}
+                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

@@ -14,7 +14,7 @@ import SignInForm from "../components/signIn";
 import DeleteBook from "../components/deleteBook";
 import UpdateBookModal from "../components/updateBook";
 import book_ex from "../../../public/book_ex.jpg"
-
+import BookGenre from "../components/bookGenre";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -23,6 +23,7 @@ export default function Books() {
         r_comments: string;
         p_comments: string;
         image: string;
+        genres: string[];
         id: string;
     }[]
     >([]);
@@ -68,8 +69,9 @@ export default function Books() {
                 (book) =>
                     book.name.toLowerCase().includes(search) ||
                     book.author.toLowerCase().includes(search) ||
-                    book.r_comments.toLowerCase().includes(search) || 
-                    book.p_comments.toLowerCase().includes(search)
+                    book.r_comments.toLowerCase().includes(search) ||
+                    book.p_comments.toLowerCase().includes(search) ||
+                    book.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
@@ -208,6 +210,13 @@ export default function Books() {
                                 </p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{book.r_comments}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{book.p_comments}</p>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {book.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <BookGenre genre={genre} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && (

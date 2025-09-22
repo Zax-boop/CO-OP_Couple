@@ -1,7 +1,7 @@
 import supabase from "./supabaseclient";
 
 export default async function updateAlbum(id, updatedFields) {
-    const { name, artist, r_comments, p_comments, imageFile } = updatedFields;
+    const { name, artist, r_comments, p_comments, imageFile, genres } = updatedFields;
     let imageUrl;
     if (imageFile) {
         const fileName = `${Date.now()}_${imageFile.name}`;
@@ -23,6 +23,7 @@ export default async function updateAlbum(id, updatedFields) {
         ...(r_comments !== undefined && { r_comments }),
         ...(p_comments !== undefined && { p_comments }),
         ...(imageUrl && { image: imageUrl }),
+        ...(genres !== undefined && { genres }),
     };
 
     const { error } = await supabase

@@ -14,9 +14,10 @@ export default function UpdateTVModal({ tv }: {
         name: string;
         director: string;
         r_comments: string;
-        p_comments: string;       
-         image: string;
+        p_comments: string;
+        image: string;
         rank: number;
+        genres: string[];
         id: string;
     }
 }) {
@@ -25,6 +26,7 @@ export default function UpdateTVModal({ tv }: {
     const [director, setDirector] = useState(tv?.director || '');
     const [rComments, setRComments] = useState(tv?.r_comments || '');
     const [pComments, setPComments] = useState(tv?.r_comments || '');
+    const [genres, setGenres] = useState(tv?.genres || []);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(tv?.rank || '');
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(tv?.image || show_placeholder);
@@ -48,6 +50,7 @@ export default function UpdateTVModal({ tv }: {
             setPComments(tv.p_comments || '');
             setRank(tv.rank || '');
             setCoverImage(tv.image || show_placeholder);
+            setGenres(tv.genres || []);
         }
     }, [tv]);
 
@@ -71,6 +74,7 @@ export default function UpdateTVModal({ tv }: {
                 p_comments: pComments,
                 imageFile,
                 rank: Number(rank),
+                genres
             };
             await updateTV(tv.id, updatedFields);
         } catch (error) {
@@ -82,10 +86,84 @@ export default function UpdateTVModal({ tv }: {
         }
     };
 
+    const genreColors: { [key: string]: string } = {
+        action: "bg-red-600",
+        adventure: "bg-orange-500",
+        animated: "bg-blue-400",
+        bl: "bg-blue-300",
+        comedy: "bg-yellow-400",
+        crime: "bg-gray-700",
+        cyberpunk: "bg-blue-900",
+        cute: "bg-pink-300",
+        dark: "bg-gray-900",
+        documentary: "bg-blue-300",
+        drama: "bg-rose-700",
+        fantasy: "bg-purple-500",
+        ghibli: "bg-green-500",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        isekai: "bg-blue-500",
+        josei: "bg-pink-500",
+        magic: "bg-indigo-500",
+        mecha: "bg-gray-600",
+        military: "bg-green-700",
+        music: "bg-teal-400",
+        mystery: "bg-blue-700",
+        noir: "bg-gray-500",
+        philosophical: "bg-indigo-800",
+        political: "bg-red-800",
+        psychological: "bg-indigo-700",
+        racing: "bg-red-800",
+        reality: "bg-green-700",
+        romance: "bg-red-400",
+        samurai: "bg-yellow-600",
+        school: "bg-yellow-500",
+        scifi: "bg-blue-400",
+        seinen: "bg-gray-500",
+        shoujo: "bg-pink-400",
+        shounen: "bg-red-500",
+        sitcom: "bg-yellow-500",
+        sliceoflife: "bg-green-400",
+        space: "bg-black",
+        sports: "bg-orange-600",
+        supernatural: "bg-purple-600",
+        thriller: "bg-red-800",
+        vampire: "bg-indigo-900",
+        western: "bg-amber-600",
+    };
+
+    const genre_list = [
+        "Action", "Adventure", "Animated", "BL", "Comedy", "Crime", "Cyberpunk", "Cute",
+        "Dark", "Documentary", "Drama", "Fantasy", "Ghibli", "Historical", "Horror",
+        "Isekai", "Josei", "Magic", "Mecha", "Military", "Music", "Mystery", "Noir",
+        "Philosophical", "Political", "Psychological", "Racing", "Reality", "Romance",
+        "Samurai", "School", "Sci-Fi", "Seinen", "Shoujo", "Shounen", "Sitcom",
+        "Slice of Life", "Space", "Sports", "Supernatural", "Thriller", "Vampire",
+        "Western"
+    ];
+
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
+
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
-                <Pencil color='black'/>
+                <Pencil color='black' />
             </div>
             {modalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div className="bg-black w-full sm:max-w-[40rem] xl:max-w-[50rem] sm:p-2 xl:p-4  rounded-lg shadow-lg relative">
@@ -150,6 +228,14 @@ export default function UpdateTVModal({ tv }: {
                                     value={rank}
                                     onChange={(e) => setRank(e.target.value)}
                                 />
+                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

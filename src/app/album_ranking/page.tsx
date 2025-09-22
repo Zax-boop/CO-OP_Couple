@@ -10,6 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import DeleteAlbum from '../components/deleteAlbum';
 import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
+import MusicGenre from '../components/musicGenre';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -18,6 +19,7 @@ export default function Albums() {
         r_comments: string;
         p_comments: string;
         image: string;
+        genres: string[];
         id: string;
     }[]>([]);
     const [filteredMedia, setFilteredMedia] = useState(albums);
@@ -59,8 +61,9 @@ export default function Albums() {
                 (album) =>
                     album.name.toLowerCase().includes(search) ||
                     album.artist.toLowerCase().includes(search) ||
-                    album.r_comments.toLowerCase().includes(search) || 
-                    album.p_comments.toLowerCase().includes(search)
+                    album.r_comments.toLowerCase().includes(search) ||
+                    album.p_comments.toLowerCase().includes(search) ||
+                    album.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
@@ -184,6 +187,7 @@ export default function Albums() {
                     r_comments: string;
                     p_comments: string;
                     image: string;
+                    genres: string[],
                     id: string;
                 }, index: number) => (
                     <FadeInSection
@@ -211,7 +215,15 @@ export default function Albums() {
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-600">{album.artist}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-green-800 font-semibold">{album.r_comments}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{album.p_comments}</p>                               </div>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2 text-purple-500 font-semibold">{album.p_comments}</p>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {album.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <MusicGenre genre={genre}/>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-800 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>

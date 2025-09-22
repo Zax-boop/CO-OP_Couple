@@ -3,7 +3,7 @@ import supabase from "./supabaseclient";
 export default async function fetchBooks() {
   const { data, error } = await supabase
     .from('books_list')
-    .select('name, author, r_comments, p_comments, image, id')
+    .select('name, author, r_comments, p_comments, image, id, genres')
 
   if (error) {
     console.error('Error fetching books:', error);
