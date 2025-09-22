@@ -1,20 +1,20 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Header from "../components/header";
-import PoppingLetters from "../components/poppingLetters";
-import BookForm from "../components/bookModal";
-import FadeInSection from "../components/fadeIn";
+import Header from "../components/general/header";
+import PoppingLetters from "../components/general/poppingLetters";
+import BookForm from "../components/books/bookModal";
+import FadeInSection from "../components/general/fadeIn";
 import Image from "next/image";
 import circe from "../../../public/circe.jpg";
 import six from "../../../public/six.jpg";
-import fetchBooks from "../../../utils/fetchBooks.js";
-import ImageTrack from "../components/ImageTrack";
-import SignInForm from "../components/signIn";
-import DeleteBook from "../components/deleteBook";
-import UpdateBookModal from "../components/updateBook";
+import fetchBooks from "../../../utils/books/fetchBooks.js";
+import ImageTrack from "../components/general/ImageTrack";
+import SignInForm from "../components/general/signIn";
+import DeleteBook from "../components/books/deleteBook";
+import UpdateBookModal from "../components/books/updateBook";
 import book_ex from "../../../public/book_ex.jpg"
-import BookGenre from "../components/bookGenre";
+import BookGenre from "../components/books/bookGenre";
 
 export default function Books() {
     const [books, setBooks] = useState<{

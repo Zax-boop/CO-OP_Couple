@@ -1,16 +1,16 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../components/header';
-import PoppingLetters from '../components/poppingLetters';
-import fetchGames from "../../../utils/fetchGames"
-import GameForm from '../components/gameModal';
-import FadeInSection from '../components/fadeIn';
-import ImageTrack from '../components/ImageTrack';
-import SignInForm from '../components/signIn';
-import DeleteGames from '../components/deleteGames';
-import UpdateGamesModal from '../components/updateGames';
-import GameGenre from '../components/gameGenre';
+import Header from '../components/general/header';
+import PoppingLetters from '../components/general/poppingLetters';
+import fetchGames from "../../../utils/games/fetchGames"
+import GameForm from '../components/games/gameModal';
+import FadeInSection from '../components/general/fadeIn';
+import ImageTrack from '../components/general/ImageTrack';
+import SignInForm from '../components/general/signIn';
+import DeleteGames from '../components/games/deleteGames';
+import UpdateGamesModal from '../components/games/updateGames';
+import GameGenre from '../components/games/gameGenre';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<{

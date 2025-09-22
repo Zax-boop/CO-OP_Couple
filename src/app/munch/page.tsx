@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Header from "../components/header";
+import Header from "../components/general/header";
 import Image from "next/image";
-import PoppingLetters from "../components/poppingLetters";
+import PoppingLetters from "../components/general/poppingLetters";
 import { PlusIcon } from "lucide-react";
-import FadeInSection from "../components/fadeIn";
-import SignInForm from "../components/signIn";
+import FadeInSection from "../components/general/fadeIn";
+import SignInForm from "../components/general/signIn";
 import { User } from "@supabase/supabase-js";
-import supabase from "../../../utils/supabaseclient";
+import supabase from "../../../utils/general/supabaseclient";
 import { useMediaQuery } from "react-responsive";
-import VideoWithPlaceholder from "../components/placeholderVideo";
-import fetchMunch from "../../../utils/fetchMunch";
-import addMunch from "../../../utils/addMunch";
+import VideoWithPlaceholder from "../components/general/placeholderVideo";
+import fetchMunch from "../../../utils/munch/fetchMunch";
+import addMunch from "../../../utils/munch/addMunch";
 
 export default function Munch() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })

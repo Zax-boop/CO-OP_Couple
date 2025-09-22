@@ -5,16 +5,16 @@ import Header from "../components/general/header";
 import Image from "next/image";
 import PoppingLetters from "../components/general/poppingLetters";
 import { PlusIcon } from "lucide-react";
+import addClimbingMedia from "../../../utils/sports/addClimbingMedia";
 import FadeInSection from "../components/general/fadeIn";
 import SignInForm from "../components/general/signIn";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/general/supabaseclient";
 import { useMediaQuery } from "react-responsive";
 import VideoWithPlaceholder from "../components/general/placeholderVideo";
-import fetchMushroom from "../../../utils/mushroom/fetchMushroom";
-import addMushroom from "../../../utils/mushroom/addMushroom";
+import fetchSportsMedia from "../../../utils/sports/fetchClimbingMedia";
 
-export default function Mushroom() {
+export default function Climbing() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
     const [mediaFiles, setMediaFiles] = useState<{
         name: string;
@@ -24,8 +24,7 @@ export default function Mushroom() {
             };
         };
     }[]>([]);
-    // const [loading, setLoading] = useState(true);
-    const [pageLoading, setPageLoading] = useState(false)
+    const [loading, setLoading] = useState(true);
     const [showWarning, setShowWarning] = useState(false)
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
@@ -38,7 +37,7 @@ export default function Mushroom() {
     }, []);
     useEffect(() => {
         const fetchMedia = async () => {
-            const media = await fetchMushroom();
+            const media = await fetchSportsMedia();
             setMediaFiles(media);
         };
 
@@ -49,51 +48,57 @@ export default function Mushroom() {
         if (event.target.files) {
             try {
                 setPageLoading(true);
-                const files = Array.from(event.target.files);
-                await Promise.all(files.map(file => addMushroom(file)));
+                const file = event.target.files[0];
+                await addClimbingMedia(file);
                 window.location.reload();
             } catch (error) {
                 console.log("Error adding media:", error);
             } finally {
                 setPageLoading(false);
             }
+            // const file = event.target.files[0];
+            // if (file) {
+            //     await addClimbingMedia(file);
+            //     window.location.reload()
+            // }
         }
     };
+
+    const backgroundVideos = mediaFiles
+        .filter((file) => file.name.endsWith(".mp4"))
+        .filter((_, index) => (index >= 0 && index <= 3));
+
+    const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
+
+    const [pageLoading, setPageLoading] = useState(false)
 
     if (pageLoading) {
         return <div>Loading...</div>;
     }
-
     return (
-        <div className="flex flex-col w-full h-full items-center bg-red-200">
+        <div className="flex flex-col w-full h-full items-center bg-orange-200">
             <Header />
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10  overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
-                    <div className='w-1/3 h-full'>
-                        <img
-                            src={"/m1.jpg"}
-                            className={`w-full object-fill duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
+                    {backgroundVideos.map((file, index) => (
+                        <video
+                            key={index}
+                            src={file.url?.data?.publicUrl}
+                            autoPlay
+                            loop
+                            muted
+                            controls={false}
+                            playsInline
+                            className={`w-1/3 h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
+                                ? "scale-110 blur-2xl grayscale"
+                                : "scale-100 blur-0 grayscale-0"
+                                }`}
+                            onLoadedData={() => setLoading(false)}
                         />
-                    </div>
-                    <div className='w-1/3 h-full'>
-                        <img
-                            src={"/m4.jpg"}
-                            className={`w-full h-1/2 object-cover duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
-                        />
-                        <img
-                            src={"/m3.jpg"}
-                            className={`w-full h-1/2 object-cover duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
-                        />
-                    </div>
-                    <div className='w-1/3 h-full'>
-                        <img
-                            src={"/m2.jpg"}
-                            className={`w-full object-fill duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
-                        />
-                    </div>
+                    ))}
                 </div>
-                <PoppingLetters text="Mushroom" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
+                <PoppingLetters text="Sports" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="flex flex-col w-full xs:mt-2 sm:mt-4 xl:mt-10 self-start">
@@ -103,7 +108,6 @@ export default function Mushroom() {
                         <PlusIcon className="w-5 h-5 mr-2" />
                         {user && <input
                             type="file"
-                            multiple={true}
                             className="hidden"
                             onChange={handleFileChange}
                         />}
@@ -111,7 +115,7 @@ export default function Mushroom() {
                 </div>}
                 {showWarning && <p className="text-red-600 w-full text-right xs:pr-2 sm:pr-4 mt-1 xs:text-xs sm:text-base">You are not authenticated.</p>}
                 <div className="xs:p-2 xs:gap-2 xs:space-y-2 sm:p-4 xs:columns-2 sm:columns-4 sm:gap-4 sm:space-y-4">
-                    {mediaFiles.map((file, index) => {
+                    {shuffledMediaFiles.map((file, index) => {
                         const fileExt = file.name.split(".").pop()?.toLowerCase();
                         return (
                             <FadeInSection
@@ -121,14 +125,14 @@ export default function Mushroom() {
                                 {["jpg", "jpeg", "png"].includes(fileExt || "") ? (
                                     <Image
                                         src={file.url?.data?.publicUrl}
-                                        alt={`Mushroom media ${index}`}
+                                        alt={`Sports media ${index}`}
                                         width={500}
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
                                         className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75`}
                                     />
-                                ) : ["mp4"].includes(fileExt || "") ? (
+                                ) : ["mp4", ".mov"].includes(fileExt || "") ? (
                                     <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75" />
 
                                 ) : null}

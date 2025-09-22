@@ -1,16 +1,16 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../components/header';
-import PoppingLetters from '../components/poppingLetters';
-import fetchTV from "../../../utils/fetchTV"
-import TVForm from '../components/tvModal';
-import FadeInSection from '../components/fadeIn';
-import ImageTrack from '../components/ImageTrack';
-import SignInForm from '../components/signIn';
-import DeleteTV from '../components/deleteTV';
-import UpdateTVModal from '../components/updateTV';
-import TVGenre from '../components/tvGenre';
+import Header from '../components/general/header';
+import PoppingLetters from '../components/general/poppingLetters';
+import fetchTV from "../../../utils/belevision/fetchTV"
+import TVForm from '../components/belevision/tvModal';
+import FadeInSection from '../components/general/fadeIn';
+import ImageTrack from '../components/general/ImageTrack';
+import SignInForm from '../components/general/signIn';
+import DeleteTV from '../components/belevision/deleteTV';
+import UpdateTVModal from '../components/belevision/updateTV';
+import TVGenre from '../components/belevision/tvGenre';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
