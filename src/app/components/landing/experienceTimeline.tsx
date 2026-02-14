@@ -182,7 +182,7 @@ export default function ExperienceTimeline() {
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>6 Monthiversary</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Thai Food</p>
-                        <p className='!mt-0'>Prath&apos;s ordered the spiciest of spiciest spice levels only to get annihilated. We had some shmack spoonhouse dessert after though!.</p>
+                        <p className='!mt-0'>Prath&apos;s ordered the spiciest of spiciest spice levels only to get annihilated. We had some shmack Heavy Spoon dessert after though!.</p>
                     </div>
                 </VerticalTimelineElement>
                 <VerticalTimelineElement
