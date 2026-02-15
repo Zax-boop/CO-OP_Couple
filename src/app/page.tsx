@@ -2,16 +2,13 @@
 
 import { useEffect, useState } from "react";
 import PoppingLetters from "./components/general/poppingLetters";
-// import ExperienceTimeline from "./components/experienceTimeline";
 import AboutSection from "./components/landing/aboutSection";
-// import ProjectSection from "./components/projectSection";
-// import ContactSection from "./components/contactSection";
 import SignInForm from "./components/general/signIn"
 import LazyLoader from "./components/general/lazyLoader";
 import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/landing/homeHeader";
-import ExperienceTimeline from "./components/landing/experienceTimeline";
 import ImageSlider from "./components/landing/imageSlider";
+import Timeline from "./components/landing/timeline";
 
 const images: string[] = [
   "/slider1.jpg",
@@ -123,7 +120,7 @@ export default function Home() {
       </div>
       <div className="w-4/5 flex flex-col mt-2 xl:mt-[1rem] z-10">
         <LazyLoader id="experience">
-          <ExperienceTimeline />
+          <Timeline />
         </LazyLoader>
         {/* <LazyLoader id="projects">
           <ProjectSection />

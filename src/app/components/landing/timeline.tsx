@@ -7,7 +7,7 @@ import FadeInSection from '../general/fadeIn';
 import { useRef, useState, useEffect } from 'react';
 import React from 'react'
 
-export default function ExperienceTimeline() {
+export default function Timeline() {
     const lineRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -379,7 +379,7 @@ export default function ExperienceTimeline() {
                 >
                     <div className='flex flex-col'>
                         <a className="rounded-lg overflow-hidden">
-                            <img className='w-full' src='/prath21stBday.jpg' />
+                            <img className='w-full' src='/prath21stbday.jpg' />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Prath&apos;s 21st Birthday!</h1>
                         <p className='!mt-0'>Much food was munched!</p>
