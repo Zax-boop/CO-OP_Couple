@@ -72,7 +72,7 @@ export default function Mushroom() {
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
                         <img
-                            src={"/m1.jpg"}
+                            src={"/m1.png"}
                             className={`w-full object-fill duration-700 ease-in-out group-hover:opacity-75 scale-100 blur-0 grayscale-0`}
                         />
                     </div>

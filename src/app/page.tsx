@@ -122,15 +122,9 @@ export default function Home() {
         <LazyLoader id="experience">
           <Timeline />
         </LazyLoader>
-        {/* <LazyLoader id="projects">
-          <ProjectSection />
-        </LazyLoader> */}
         <LazyLoader id="about">
           <AboutSection />
         </LazyLoader>
-        {/* <LazyLoader id="contact">
-          <ContactSection />
-        </LazyLoader> */}
       </div>
     </div>
   );

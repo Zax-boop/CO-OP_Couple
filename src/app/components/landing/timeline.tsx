@@ -450,7 +450,7 @@ export default function Timeline() {
                             <img className='w-full' src='/unofficial2025.jpg' />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>2 Year Anniversary</h1>
-                        <p className='!mt-0'>Da Bohan came to visit since he&apos;d been working at IBM for a co-op at home! Much raquetball was played!</p>
+                        <p className='!mt-0'>Da Bohan came to visit since he&apos;d been working at IBM for a co-op at home! Much racquetball was played!</p>
                     </div>
                 </VerticalTimelineElement>
             </VerticalTimeline>
